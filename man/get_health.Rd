@@ -4,17 +4,21 @@
 \alias{get_health}
 \title{Exchange status}
 \usage{
-get_health(...)
+get_health(product_code = "BTC_JPY")
 }
 \arguments{
-\item{product_code}{A product_code or alias, as obtained from `markets()`. Default: "BTC_JPY".}
+\item{product_code}{A product_code or alias, as obtained from the Market List.
+If omitted, the value is set to "BTC_JPY".
+Only "BTC_USD" is available for U.S. accounts,
+and only "BTC_EUR" is available for European accounts.}
 }
 \value{
-String. one of the following levels
+One of the following levels
    NORMAL: The exchange is operating.
    BUSY: The exchange is experiencing high traffic.
    VERY BUSY: The exchange is experiencing heavy traffic.
-   SUPER BUSY: The exchange is experiencing extremely heavy traffic. There is a possibility that orders will fail or be processed after a delay.
+   SUPER BUSY: The exchange is experiencing extremely heavy traffic.
+     There is a possibility that orders will fail or be processed after a delay.
    STOP: The exchange has been stopped. Orders will not be accepted.
 }
 \description{

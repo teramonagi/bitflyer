@@ -1,64 +1,95 @@
 #' @include util.R
 
+#' @title Params product_code
+#' @name product_code
+#' @keywords internal
+#' @param product_code A product_code or alias, as obtained from the Market List.
+#'   If omitted, the value is set to "BTC_JPY".
+#'   Only "BTC_USD" is available for U.S. accounts,
+#'   and only "BTC_EUR" is available for European accounts.
+func_product_code <- function(product_code="BTC_JPY"){
+  request_public(product_code=product_code)
+}
+
+#' @title Params region
+#' @name region
+#' @keywords internal
+#' @param region empty string ("") or "usa"
+func_region <- function(region = "") {
+  request_public(region=region)
+}
+
+#' @title Params count, before, after
+#' @name count_before_after
+#' @keywords internal
+#' @param count Specifies the number of results. If this is omitted, the value will be 100.
+#' @param before Obtains data having an id lower than the value specified for this parameter.
+#' @param after Obtains data having an id higher than the value specified for this parameter.
+NULL
+
 #' Market List
 #'
 #' Get the list of market
 #'
+#' @inheritParams region
 #' @export
-markets <- function(...){make_request(...)}
+markets <- func_region
+
 #' @rdname markets
 #' @export
-get_markets <- function(...){make_request(...)}
+get_markets <- func_region
 
 #' Order Book
 #'
 #' Get order book
 #'
+#' @rdname board
+#' @inheritParams product_code
 #' @export
-board <- function(...){make_request(...)}
+board <- func_product_code
+
 #' @rdname board
 #' @export
-get_board <- function(...){make_request(...)}
+get_board <- func_product_code
 
 #' Order Book
 #'
 #' Get order book
 #'
+#' @inheritParams product_code
 #' @export
-ticker <- function(...){make_request(...)}
+ticker <- func_product_code
+
 #' @rdname ticker
 #' @export
-get_ticker <- function(...){make_request(...)}
-
+get_ticker <- func_product_code
 
 #' Execution History
 #'
 #' Get Execution History
 #'
+#' @inheritParams  product_code
+#' @inheritParams  count_before_after
 #' @export
-executions  <- function(...){make_request(...)}
+executions <- function(product_code="BTC_JPY", count=100, before=NA, after=NA){
+  request_public(product_code=product_code, count=count, before=before, after=after)
+}
 #' @rdname executions
 #' @export
-get_executions <- function(...){make_request(...)}
-
-#' Order Book
-#'
-#' Get order book
-#'
-#' @export
-get_boardstate  <- function(...){make_request(...)}
+get_executions <- executions
 
 #' Exchange status
 #'
 #' Get the current status of the exchange.
 #'
-#' @param product_code A product_code or alias, as obtained from `markets()`. Default: "BTC_JPY".
+#' @inheritParams product_code
 #' @return
-#'  String. one of the following levels
+#'  One of the following levels
 #'    NORMAL: The exchange is operating.
 #'    BUSY: The exchange is experiencing high traffic.
 #'    VERY BUSY: The exchange is experiencing heavy traffic.
-#'    SUPER BUSY: The exchange is experiencing extremely heavy traffic. There is a possibility that orders will fail or be processed after a delay.
+#'    SUPER BUSY: The exchange is experiencing extremely heavy traffic.
+#'      There is a possibility that orders will fail or be processed after a delay.
 #'    STOP: The exchange has been stopped. Orders will not be accepted.
 #' @examples
 #' \dontrun{
@@ -66,19 +97,15 @@ get_boardstate  <- function(...){make_request(...)}
 #' }
 #'
 #' @export
-get_health <- function(...){make_request(...)}
+get_health <- func_product_code
 
 #' Chat
 #'
 #' Get the history of chats
 #'
-#' @param from_date string (e.g. 2018-06-30). This function wil return any new messages after this date.
-#'
+#' @param from_date string (e.g. 2018-06-30).
+#'   The function returns new messages after this date.
 #' @export
-get_chats  <- function(...){make_request(...)}
-
-
-#' @param count: Specifies the number of results. If this is omitted, the value will be 100.
-#' @param before: Obtains data having an id lower than the value specified for this parameter.
-#' @param after: Obtains data having an id higher than the value specified for this parameter.
-#' @param product_code A product_code or alias, as obtained from `markets()`. Default: "BTC_JPY".
+get_chats <- function(from_date){
+  request_public(from_date = from_date)
+}

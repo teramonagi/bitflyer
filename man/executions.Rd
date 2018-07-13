@@ -5,9 +5,23 @@
 \alias{get_executions}
 \title{Execution History}
 \usage{
-executions(...)
+executions(product_code = "BTC_JPY", count = 100, before = NA,
+  after = NA)
 
-get_executions(...)
+get_executions(product_code = "BTC_JPY", count = 100, before = NA,
+  after = NA)
+}
+\arguments{
+\item{product_code}{A product_code or alias, as obtained from the Market List.
+If omitted, the value is set to "BTC_JPY".
+Only "BTC_USD" is available for U.S. accounts,
+and only "BTC_EUR" is available for European accounts.}
+
+\item{count}{Specifies the number of results. If this is omitted, the value will be 100.}
+
+\item{before}{Obtains data having an id lower than the value specified for this parameter.}
+
+\item{after}{Obtains data having an id higher than the value specified for this parameter.}
 }
 \description{
 Get Execution History

@@ -4,10 +4,11 @@
 \alias{get_chats}
 \title{Chat}
 \usage{
-get_chats(...)
+get_chats(from_date)
 }
 \arguments{
-\item{from_date}{string (e.g. 2018-06-30). This function wil return any new messages after this date.}
+\item{from_date}{string (e.g. 2018-06-30).
+The function returns new messages after this date.}
 }
 \description{
 Get the history of chats
