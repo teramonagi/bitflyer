@@ -4,7 +4,7 @@
 \alias{get_addresses}
 \title{Get Bitcoin/Ethereum Deposit Addresses}
 \usage{
-get_addresses(..., region = "")
+get_addresses()
 }
 \description{
 Get Bitcoin/Ethereum Deposit Addresses

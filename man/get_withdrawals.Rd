@@ -4,7 +4,7 @@
 \alias{get_withdrawals}
 \title{Get Deposit Cancellation History}
 \usage{
-get_withdrawals(..., region = "")
+get_withdrawals()
 }
 \description{
 Get Deposit Cancellation History

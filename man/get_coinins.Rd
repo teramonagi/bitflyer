@@ -4,7 +4,7 @@
 \alias{get_coinins}
 \title{Get Bitcoin/Ether Deposit History}
 \usage{
-get_coinins(..., region = "")
+get_coinins()
 }
 \description{
 Get Bitcoin/Ether Deposit History

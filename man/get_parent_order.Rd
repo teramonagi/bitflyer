@@ -4,7 +4,7 @@
 \alias{get_parent_order}
 \title{Get Parent Order Details}
 \usage{
-get_parent_order(..., region = "")
+get_parent_order()
 }
 \arguments{
 \item{parent_order_id}{The ID of the parent order in question.}

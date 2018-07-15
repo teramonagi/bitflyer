@@ -4,7 +4,7 @@
 \alias{send_parent_order}
 \title{Submit New Parent Order (Special order)}
 \usage{
-send_parent_order(..., region = "")
+send_parent_order()
 }
 \description{
 It is possible to place orders including logic other than simple limit orders (LIMIT)

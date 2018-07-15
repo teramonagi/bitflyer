@@ -4,7 +4,7 @@
 \alias{get_collateral_history}
 \title{Get Margin Change History}
 \usage{
-get_collateral_history(..., region = "")
+get_collateral_history()
 }
 \arguments{
 \item{count}{Specifies the number of results. If this is omitted, the value will be 100.}

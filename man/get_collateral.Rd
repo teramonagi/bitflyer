@@ -4,7 +4,7 @@
 \alias{get_collateral}
 \title{Get Margin Status}
 \usage{
-get_collateral(..., region = "")
+get_collateral()
 }
 \description{
 Get Margin Status

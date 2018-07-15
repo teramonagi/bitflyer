@@ -4,7 +4,7 @@
 \alias{get_deposits}
 \title{Get Cash Deposits}
 \usage{
-get_deposits(..., region = "")
+get_deposits()
 }
 \description{
 Get Cash Deposits

@@ -4,15 +4,15 @@
 \alias{withdraw}
 \title{Withdrawing Funds}
 \usage{
-withdraw(..., region = "")
+withdraw(currency_code, bank_account_id, amount)
 }
 \arguments{
-\item{currency_code}{Required. Currently only compatible with "JPY" for Japanese accounts,
+\item{currency_code}{Currently only compatible with "JPY" for Japanese accounts,
 "USD" for U.S. accounts, and "EUR" for European accounts.}
 
-\item{bank_account_id}{Required. Specify id of the bank account.}
+\item{bank_account_id}{ID of the bank account.}
 
-\item{amount}{Required. This is the amount that you are canceling.}
+\item{amount}{This is the amount that you are canceling.}
 }
 \description{
 Withdrawing Funds

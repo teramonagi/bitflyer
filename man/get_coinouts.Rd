@@ -4,7 +4,7 @@
 \alias{get_coinouts}
 \title{Get Bitcoin/Ether Transaction History}
 \usage{
-get_coinouts(..., region = "")
+get_coinouts()
 }
 \description{
 Get Bitcoin/Ether Transaction History

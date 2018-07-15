@@ -4,7 +4,7 @@
 \alias{get_bank_accounts}
 \title{Get Summary of Bank Accounts}
 \usage{
-get_bank_accounts(..., region = "")
+get_bank_accounts()
 }
 \description{
 Returns a summary of bank accounts registered to your account.

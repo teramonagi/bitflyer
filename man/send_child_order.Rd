@@ -4,22 +4,26 @@
 \alias{send_child_order}
 \title{Send a New Order}
 \usage{
-send_child_order(..., region = "")
+send_child_order(product_code, child_order_type, side, price, size,
+  minute_to_expire = 43200, time_in_force = "GTC")
 }
 \arguments{
-\item{product_code}{Required. The product being ordered. Please specify a product_code or alias, as obtained from the Market List. Only "BTC_USD" is available for U.S. accounts, and only "BTC_EUR" is available for European accounts.}
+\item{product_code}{The product being ordered. Please specify a product_code or alias, as obtained from the Market List.
+Only "BTC_USD" is available for U.S. accounts, and only "BTC_EUR" is available for European accounts.}
 
-\item{child_order_type}{Required. For limit orders, it will be "LIMIT". For market orders, "MARKET".}
+\item{child_order_type}{For limit orders, it will be "LIMIT". For market orders, "MARKET".}
 
-\item{side}{Required. For buy orders, "BUY". For sell orders, "SELL".}
+\item{side}{For buy orders, "BUY". For sell orders, "SELL".}
 
 \item{price}{Specify the price. This is a required value if child_order_type has been set to "LIMIT".}
 
-\item{size}{Required. Specify the order quantity.}
+\item{size}{Specify the order quantity.}
 
-\item{minute_to_expire}{Specify the time in minutes until the expiration time. If omitted, the value will be 43200 (30 days).}
+\item{minute_to_expire}{Specify the time in minutes until the expiration time.
+If omitted, the value will be 43200 (30 days).}
 
-\item{time_in_force}{Specify any of the following execution conditions - "GTC", "IOC", or "FOK". If omitted, the value defaults to "GTC".}
+\item{time_in_force}{Specify any of the following execution conditions - "GTC", "IOC", or "FOK".
+If omitted, the value defaults to "GTC".}
 }
 \description{
 Send a New Order

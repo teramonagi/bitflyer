@@ -4,7 +4,7 @@
 \alias{get_balance}
 \title{Get Account Asset Balance}
 \usage{
-get_balance(..., region = "")
+get_balance()
 }
 \description{
 Get Account Asset Balance

@@ -1,88 +1,145 @@
-#' @include util.R
+#' @include manual-template.R util.R
+NULL
+
+# Functions in this souce file
+request_private_get <- function(..., region = "")
+{
+  calling_function <- calling_function_name(-2)
+  query <- list(...)
+  request_private(calling_function, "GET", query = query, region = region)
+}
+
+request_private_post <- function(..., region = "")
+{
+  calling_function <- calling_function_name(-2)
+  body <- jsonlite::toJSON(list(...), auto_unbox=TRUE)
+  request_private(calling_function, "POST", body = body, region = region)
+}
+
+request_private <- function(calling_function, method, query = NULL, body = NULL, region = "") {
+  region <- check_region(region)
+  path <- build_path("v1/me", method, calling_function, region, query)
+  url <- build_url("v1/me", method, calling_function, region, query)
+  # unix time stamp
+  timestamp <- as.numeric(Sys.time())
+  # Sign
+  text <- paste0(timestamp, method, path, body)
+  sign <- digest::hmac(key=get_from_env_or_global_env("BITFLYER_SECRET"), object=text, algo="sha256", serialize=FALSE)
+  header <- httr::add_headers(
+    `ACCESS-KEY`=get_from_env_or_global_env("BITFLYER_KEY"),
+    `ACCESS-TIMESTAMP`=timestamp,
+    `ACCESS-SIGN`=sign,
+    `Content-Type`="application/json"
+  )
+  # Create header
+  request(method, url, header, query=query, body=body)
+}
+
+#' @title Params No argumet
+#' @name no_argument_private_get
+#' @keywords internal
+func_no_argument_private_get <- function() {
+  request_private_get()
+}
 
 #' Get API Key Permissions
 #'
 #' Access a list of which HTTP Private APIs can be used with the specified API key
 #' @export
-get_permissions <- make_request_private_get
+get_permissions <- func_no_argument_private_get
 
 #' Get Account Asset Balance
 #'
 #' Get Account Asset Balance
 #' @export
-get_balance <- make_request_private_get
-
-
-#' Get Margin Status
-#'
-#' Get Margin Status
-#' @export
-get_collateral <- make_request_private_get
+get_balance <- func_no_argument_private_get
 
 #' Get Margin Status
 #'
 #' Get Margin Status
 #' @export
-get_collateral_accounts <- make_request_private_get
+get_collateral <- func_no_argument_private_get
+
+#' Get Margin Status
+#'
+#' Get Margin Status
+#' @export
+get_collateral_accounts <- func_no_argument_private_get
 
 #' Get Bitcoin/Ethereum Deposit Addresses
 #'
 #' Get Bitcoin/Ethereum Deposit Addresses
 #' @export
-get_addresses <- make_request_private_get
+get_addresses <- func_no_argument_private_get
 
 #' Get Bitcoin/Ether Deposit History
 #'
 #' Get Bitcoin/Ether Deposit History
 #' @export
-get_coinins <- make_request_private_get
+get_coinins <- func_no_argument_private_get
 
 #' Get Bitcoin/Ether Transaction History
 #'
 #' Get Bitcoin/Ether Transaction History
 #' @export
-get_coinouts <- make_request_private_get
+get_coinouts <- func_no_argument_private_get
 
 #' Get Summary of Bank Accounts
 #'
 #' Returns a summary of bank accounts registered to your account.
 #' @export
-get_bank_accounts <- make_request_private_get
+get_bank_accounts <- func_no_argument_private_get
 
 #' Get Cash Deposits
 #'
 #' Get Cash Deposits
 #' @export
-get_deposits  <- make_request_private_get
+get_deposits <- func_no_argument_private_get
 
 #' Withdrawing Funds
 #'
 #' Withdrawing Funds
-#' @param currency_code Required. Currently only compatible with "JPY" for Japanese accounts,
+#' @param currency_code Currently only compatible with "JPY" for Japanese accounts,
 #'   "USD" for U.S. accounts, and "EUR" for European accounts.
-#' @param bank_account_id Required. Specify id of the bank account.
-#' @param amount Required. This is the amount that you are canceling.
+#' @param bank_account_id ID of the bank account.
+#' @param amount This is the amount that you are canceling.
 #' @export
-withdraw <- make_request_private_post
+withdraw <- function(currency_code, bank_account_id, amount) {
+  request_private_post(currency_code = currency_code, bank_account_id = bank_account_id, amount = amount)
+}
 
 #' Get Deposit Cancellation History
 #'
 #' Get Deposit Cancellation History
 #' @export
-get_withdrawals <- make_request_private_get
+get_withdrawals <- func_no_argument_private_get
 
 #' Send a New Order
 #'
 #' Send a New Order
-#' @param product_code Required. The product being ordered. Please specify a product_code or alias, as obtained from the Market List. Only "BTC_USD" is available for U.S. accounts, and only "BTC_EUR" is available for European accounts.
-#' @param child_order_type Required. For limit orders, it will be "LIMIT". For market orders, "MARKET".
-#' @param side Required. For buy orders, "BUY". For sell orders, "SELL".
+#'
+#' @param product_code The product being ordered. Please specify a product_code or alias, as obtained from the Market List.
+#'   Only "BTC_USD" is available for U.S. accounts, and only "BTC_EUR" is available for European accounts.
+#' @param child_order_type For limit orders, it will be "LIMIT". For market orders, "MARKET".
+#' @param side For buy orders, "BUY". For sell orders, "SELL".
 #' @param price Specify the price. This is a required value if child_order_type has been set to "LIMIT".
-#' @param size Required. Specify the order quantity.
-#' @param minute_to_expire Specify the time in minutes until the expiration time. If omitted, the value will be 43200 (30 days).
-#' @param time_in_force Specify any of the following execution conditions - "GTC", "IOC", or "FOK". If omitted, the value defaults to "GTC".
+#' @param size Specify the order quantity.
+#' @param minute_to_expire Specify the time in minutes until the expiration time.
+#'   If omitted, the value will be 43200 (30 days).
+#' @param time_in_force Specify any of the following execution conditions - "GTC", "IOC", or "FOK".
+#'   If omitted, the value defaults to "GTC".
 #' @export
-send_child_order <- make_request_private_post
+send_child_order <- function(product_code, child_order_type, side, price, size, minute_to_expire = 43200, time_in_force = "GTC") {
+  request_private_post(
+    product_code = product_code,
+    child_order_type = child_order_type,
+    side = side,
+    price = price,
+    size = size,
+    minute_to_expire = minute_to_expire,
+    time_in_force = time_in_force
+  )
+}
 
 #' Cancel Order
 #'
@@ -91,7 +148,13 @@ send_child_order <- make_request_private_post
 #' @param child_order_id ID for the canceling order.
 #' @param child_order_acceptance_id Expects an ID from Send a New Order. When specified, the corresponding order will be cancelled.
 #' @export
-cancel_child_order <- make_request_private_post
+cancel_child_order <- send_child_order <- function(product_code, child_order_type, side, price, size, minute_to_expire = 43200, time_in_force = "GTC") {
+  request_private_post(
+    product_code = product_code,
+    child_order_id = child_order_id,
+    child_order_acceptance_id = child_order_acceptance_id
+  )
+}
 
 #' Submit New Parent Order (Special order)
 #'

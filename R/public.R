@@ -1,31 +1,23 @@
-#' @include util.R
+#' @include manual-template.R util.R
+NULL
 
-#' @title Params product_code
-#' @name product_code
-#' @keywords internal
-#' @param product_code A product_code or alias, as obtained from the Market List.
-#'   If omitted, the value is set to "BTC_JPY".
-#'   Only "BTC_USD" is available for U.S. accounts,
-#'   and only "BTC_EUR" is available for European accounts.
-func_product_code <- function(product_code="BTC_JPY"){
+# Functions in this souce file
+request_public <- function(..., region = "")
+{
+  region <- check_region(region)
+  name <- calling_function_name(-2)
+  query <- list(...)
+  url <- build_url("v1", "GET", name, region, query)
+  request("GET", url, query = query)
+}
+
+func_product_code <- function(product_code = "BTC_JPY"){
   request_public(product_code=product_code)
 }
 
-#' @title Params region
-#' @name region
-#' @keywords internal
-#' @param region empty string ("") or "usa"
 func_region <- function(region = "") {
   request_public(region=region)
 }
-
-#' @title Params count, before, after
-#' @name count_before_after
-#' @keywords internal
-#' @param count Specifies the number of results. If this is omitted, the value will be 100.
-#' @param before Obtains data having an id lower than the value specified for this parameter.
-#' @param after Obtains data having an id higher than the value specified for this parameter.
-NULL
 
 #' Market List
 #'
@@ -71,7 +63,7 @@ get_ticker <- func_product_code
 #' @inheritParams  product_code
 #' @inheritParams  count_before_after
 #' @export
-executions <- function(product_code="BTC_JPY", count=100, before=NA, after=NA){
+executions <- function(product_code = "BTC_JPY", count = 100, before = NA, after = NA){
   request_public(product_code=product_code, count=count, before=before, after=after)
 }
 #' @rdname executions

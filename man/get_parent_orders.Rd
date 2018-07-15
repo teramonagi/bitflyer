@@ -4,7 +4,7 @@
 \alias{get_parent_orders}
 \title{List Parent Orders}
 \usage{
-get_parent_orders(..., region = "")
+get_parent_orders()
 }
 \arguments{
 \item{product_code}{A product_code or alias, as obtained from the Market List.

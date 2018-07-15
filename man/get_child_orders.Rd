@@ -4,7 +4,7 @@
 \alias{get_child_orders}
 \title{List Orders}
 \usage{
-get_child_orders(..., region = "")
+get_child_orders()
 }
 \arguments{
 \item{product_code}{Please specify a product_code or alias, as obtained from the Market List. Only "BTC_USD" is available for U.S. accounts, and only "BTC_EUR" is available for European accounts.}

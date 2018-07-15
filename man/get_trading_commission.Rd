@@ -4,7 +4,7 @@
 \alias{get_trading_commission}
 \title{Get Trading Commission}
 \usage{
-get_trading_commission(..., region = "")
+get_trading_commission()
 }
 \arguments{
 \item{product_code}{A product_code or alias, as obtained from the Market List.

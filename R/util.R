@@ -1,4 +1,3 @@
-#' @keywords internal
 get_from_env_or_global_env <- function(x)
 {
   if(Sys.getenv(x) != ""){
@@ -20,21 +19,19 @@ calling_function_name <- function(level=-2)
   stringr::str_replace_all(func_name, "_", "")
 }
 
-build_path <- function(version, method, calling_function, region, ...)
+build_path <- function(version, method, calling_function, region, query)
 {
-  query <- NULL
-  dots <- list(...)
-  if(length(dots) >= 1 & method == "GET"){
-    x <- purrr::imap(dots, ~ paste0(.y, "=", .x))
-    query <- paste0("?", purrr::reduce(x, ~ paste(.x, .y, sep="&")))
+  if(length(query) >= 1 & method == "GET"){
+    x <- purrr::imap(query, ~ paste0(.y, "=", .x))
+    query <- paste0("?", purrr::reduce(x, ~ paste(.x, .y, sep = "&")))
   }
   region <- dplyr::if_else(region == "", "", paste0("/", region))
   paste0("/", version, "/", calling_function, region, query)
 }
 
-build_url <- function(version, method, calling_function, region, ...)
+build_url <- function(version, method, calling_function, region, query)
 {
-  path <- build_path(version, method, calling_function, region, ...)
+  path <- build_path(version, method, calling_function, region, query)
   paste0(BITFLYER_API_URL, path)
 }
 
@@ -44,53 +41,6 @@ check_region <- function(region) {
   # https://stackoverflow.com/questions/41441170/failure-of-match-arg-for-the-empty-string
   stopifnot(region %in% c("", "usa", "eu"))
   region
-}
-
-request_public <- function(..., region = "")
-{
-  region <- check_region(region)
-  name <- calling_function_name(-2)
-  url <- build_url("v1", "GET", name, region)
-  request("GET", url, query=list(...))
-}
-
-make_request_private_get <- function(..., region = "")
-{
-  calling_function <- function_name()
-  make_request_private(calling_function, "GET", ..., region = region)
-}
-
-make_request_private_post <- function(..., region = "")
-{
-  calling_function <- function_name()
-  make_request_private(calling_function, "POST", ..., region = region)
-}
-
-make_request_private <- function(calling_function, method, ..., region = "")
-{
-  path <- build_path("v1/me", method, calling_function, region, ...)
-  url <- build_url("v1/me", method, calling_function, region, ...)
-  # unix time stamp
-  timestamp <- as.numeric(Sys.time())
-  # Create body
-  if(method == "GET"){
-    query <- list(...)
-    body <- NULL
-  } else{
-    query <- NULL
-    body <- jsonlite::toJSON(list(...), auto_unbox=TRUE)
-  }
-  # Sign
-  object <- paste0(timestamp, method, path, body)
-  sign <- digest::hmac(key=get_from_env_or_global_env("BITFLYER_SECRET"), object=object, algo="sha256", serialize=FALSE)
-  # Create header
-  header <- httr::add_headers(
-    `ACCESS-KEY`=get_from_env_or_global_env("BITFLYER_KEY"),
-    `ACCESS-TIMESTAMP`=timestamp,
-    `ACCESS-SIGN`=sign,
-    `Content-Type`="application/json"
-  )
-  request(method, url, header, query=query, body=body)
 }
 
 request <- function(method, url, ..., query=NULL, body=NULL)
@@ -148,13 +98,20 @@ if(FALSE){
   get_board(product_code="BTC_JPY")
   get_board(product_code="BCH_BTC")
   ticker()
+  ticker(product_code="BTC_JPY")
+  ticker(product_code="BCH_BTC")
   get_ticker()
+  get_ticker(product_code="BTC_JPY")
+  get_ticker(product_code="BCH_BTC")
   executions()
+  executions(product_code="BTC_JPY", count=3)
+  executions(product_code="BCH_BTC", count=3, before="303218244")
   get_executions()
   get_health()
   get_health(product_code="BTC_JPY")
   get_health(product_code="BCH_BTC")
   get_chats()
-
 }
 
+make_request_private_get <- function(){}
+make_request_private_post <- function(){}
