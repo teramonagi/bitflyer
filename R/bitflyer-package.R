@@ -8,5 +8,4 @@
 NULL
 
 # Constants
-URL_PRIVATE_API_BITFLYER_V1 <- "https://api.bitflyer.jp/v1/"
 BITFLYER_API_URL <- "https://api.bitflyer.jp"

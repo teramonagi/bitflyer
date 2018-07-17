@@ -4,10 +4,11 @@
 \alias{get_trading_commission}
 \title{Get Trading Commission}
 \usage{
-get_trading_commission()
+get_trading_commission(product_code)
 }
 \arguments{
 \item{product_code}{A product_code or alias, as obtained from the Market List.
+If omitted, the value is set to "BTC_JPY".
 Only "BTC_USD" is available for U.S. accounts,
 and only "BTC_EUR" is available for European accounts.}
 }

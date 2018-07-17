@@ -2,7 +2,7 @@
 NULL
 
 # Functions in this souce file
-request_public <- function(..., region = "")
+request_public_get <- function(..., region = "")
 {
   region <- check_region(region)
   name <- calling_function_name(-2)
@@ -12,11 +12,11 @@ request_public <- function(..., region = "")
 }
 
 func_product_code <- function(product_code = "BTC_JPY"){
-  request_public(product_code=product_code)
+  request_public_get(product_code=product_code)
 }
 
 func_region <- function(region = "") {
-  request_public(region=region)
+  request_public_get(region=region)
 }
 
 #' Market List
@@ -44,9 +44,9 @@ board <- func_product_code
 #' @export
 get_board <- func_product_code
 
-#' Order Book
+#' Ticker
 #'
-#' Get order book
+#' Get ticker
 #'
 #' @inheritParams product_code
 #' @export
@@ -64,7 +64,7 @@ get_ticker <- func_product_code
 #' @inheritParams  count_before_after
 #' @export
 executions <- function(product_code = "BTC_JPY", count = 100, before = NA, after = NA){
-  request_public(product_code=product_code, count=count, before=before, after=after)
+  request_public_get(product_code=product_code, count=count, before=before, after=after)
 }
 #' @rdname executions
 #' @export
@@ -99,5 +99,5 @@ get_health <- func_product_code
 #'   The function returns new messages after this date.
 #' @export
 get_chats <- function(from_date){
-  request_public(from_date = from_date)
+  request_public_get(from_date = from_date)
 }

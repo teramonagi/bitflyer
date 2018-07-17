@@ -4,12 +4,20 @@
 \alias{get_parent_orders}
 \title{List Parent Orders}
 \usage{
-get_parent_orders()
+get_parent_orders(product_code, count = 100, before = NA, after = NA,
+  child_order_state)
 }
 \arguments{
 \item{product_code}{A product_code or alias, as obtained from the Market List.
+If omitted, the value is set to "BTC_JPY".
 Only "BTC_USD" is available for U.S. accounts,
 and only "BTC_EUR" is available for European accounts.}
+
+\item{count}{Specifies the number of results. If this is omitted, the value will be 100.}
+
+\item{before}{Obtains data having an id lower than the value specified for this parameter.}
+
+\item{after}{Obtains data having an id higher than the value specified for this parameter.}
 
 \item{child_order_state}{When specified, return only orders that match the specified value.
 You must specify one of the following:

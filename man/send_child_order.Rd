@@ -8,8 +8,10 @@ send_child_order(product_code, child_order_type, side, price, size,
   minute_to_expire = 43200, time_in_force = "GTC")
 }
 \arguments{
-\item{product_code}{The product being ordered. Please specify a product_code or alias, as obtained from the Market List.
-Only "BTC_USD" is available for U.S. accounts, and only "BTC_EUR" is available for European accounts.}
+\item{product_code}{A product_code or alias, as obtained from the Market List.
+If omitted, the value is set to "BTC_JPY".
+Only "BTC_USD" is available for U.S. accounts,
+and only "BTC_EUR" is available for European accounts.}
 
 \item{child_order_type}{For limit orders, it will be "LIMIT". For market orders, "MARKET".}
 
@@ -24,6 +26,11 @@ If omitted, the value will be 43200 (30 days).}
 
 \item{time_in_force}{Specify any of the following execution conditions - "GTC", "IOC", or "FOK".
 If omitted, the value defaults to "GTC".}
+}
+\value{
+child_order_acceptance_id.
+  To specify the order to return, please use this instead of child_order_id.
+  Please confirm the item is either Cancel Order or Obtain Execution List.
 }
 \description{
 Send a New Order

@@ -4,11 +4,13 @@
 \alias{cancel_child_order}
 \title{Cancel Order}
 \usage{
-cancel_child_order(product_code, child_order_type, side, price, size,
-  minute_to_expire = 43200, time_in_force = "GTC")
+cancel_child_order(product_code, child_order_id, child_order_acceptance_id)
 }
 \arguments{
-\item{product_code}{Required. The product for the corresponding order. Please specify a product_code or alias, as obtained from the Market List. Only "BTC_USD" is available for U.S. accounts, and only "BTC_EUR" is available for European accounts.}
+\item{product_code}{A product_code or alias, as obtained from the Market List.
+If omitted, the value is set to "BTC_JPY".
+Only "BTC_USD" is available for U.S. accounts,
+and only "BTC_EUR" is available for European accounts.}
 
 \item{child_order_id}{ID for the canceling order.}
 

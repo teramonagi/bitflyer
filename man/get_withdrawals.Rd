@@ -4,7 +4,14 @@
 \alias{get_withdrawals}
 \title{Get Deposit Cancellation History}
 \usage{
-get_withdrawals()
+get_withdrawals(count = 100, before = NA, after = NA)
+}
+\arguments{
+\item{count}{Specifies the number of results. If this is omitted, the value will be 100.}
+
+\item{before}{Obtains data having an id lower than the value specified for this parameter.}
+
+\item{after}{Obtains data having an id higher than the value specified for this parameter.}
 }
 \description{
 Get Deposit Cancellation History

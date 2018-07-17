@@ -20,3 +20,16 @@ NULL
 #' @param before Obtains data having an id lower than the value specified for this parameter.
 #' @param after Obtains data having an id higher than the value specified for this parameter.
 NULL
+
+
+#' @title Params cild_order_state
+#' @name child_order_state
+#' @keywords internal
+#' @param child_order_state When specified, return only orders that match the specified value.
+#'   You must specify one of the following:
+#'   ACTIVE: Return open orders
+#'   COMPLETED: Return fully completed orders
+#'   CANCELED: Return orders that have been cancelled by the customer
+#'   EXPIRED: Return order that have been cancelled due to expiry
+#'   REJECTED: Return failed orders
+NULL

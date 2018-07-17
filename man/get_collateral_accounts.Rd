@@ -7,5 +7,5 @@
 get_collateral_accounts()
 }
 \description{
-Get Margin Status
+Get details of your collateral balances (multiple currencies supported).
 }
