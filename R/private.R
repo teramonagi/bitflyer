@@ -47,7 +47,6 @@ func_count_before_after_private_get <- function(count = 100, before = NA, after 
   request_private_get(count = count, before = before, after = after)
 }
 
-
 #' Get API Key Permissions
 #'
 #' Access a list of which HTTP Private APIs can be used with the specified API key
@@ -168,8 +167,8 @@ send_child_order <- function(product_code, child_order_type, side, price, size, 
 #' Cancel Order
 #'
 #' @inheritParams product_code
-#' @param child_order_id ID for the canceling order.
-#' @param child_order_acceptance_id Expects an ID from Send a New Order. When specified, the corresponding order will be cancelled.
+#' @inheritParams child_order_id
+#' @inheritParams child_order_acceptance_id
 #' @export
 cancel_child_order <- function(product_code, child_order_id, child_order_acceptance_id) {
   request_private_post(
@@ -181,6 +180,9 @@ cancel_child_order <- function(product_code, child_order_id, child_order_accepta
 
 #' Submit New Parent Order (Special order)
 #'
+#' Submit New Parent Order (Special order)
+#'
+#' @details
 #' It is possible to place orders including logic other than simple limit orders (LIMIT)
 #' and market orders (MARKET). Such orders are handled as parent orders.
 #' By using a special order, it is possible to place orders in response to market conditions or place multiple associated orders.
@@ -196,9 +198,10 @@ send_parent_order <- make_request_private_post
 #' If a parent order is canceled, the placed orders associated with that order will all be canceled.
 #'
 #' @inheritParams product_code
-#' @param  parent_order_id ID for the canceling order.
-#' @param parent_order_acceptance_id Expects an ID from Submit New Parent Order.
-#'   When specified, the corresponding order will be cancelled.
+#' @inheritParams parent_order_id
+#' @inheritParams parent_order_acceptance_id
+#' @details
+#' When \code{parent_order_acceptance_id} is specified, the corresponding order will be cancelled.
 #' @export
 cancel_parent_order <- make_request_private_post
 
@@ -217,9 +220,11 @@ cancel_all_childorders <- func_product_code_private_get
 #' @inheritParams product_code
 #' @inheritParams count_before_after
 #' @inheritParams child_order_state
-#' @param child_order_id  ID for the child order.
-#' @param child_order_acceptance_id ID for the child order.
-#' @param parent_order_id If specified, a list of all orders associated with the parent order is obtained.
+#' @inheritParams child_order_id
+#' @inheritParams child_order_acceptance_id
+#' @inheritParams parent_order_id
+#' @details
+#' If \code{parent_order_id} is specified, a list of all orders associated with the parent order is obtained.
 #' @export
 get_child_orders <- function(product_code, count = 100, before = NA, after = NA, child_order_state, child_order_id, child_order_acceptance_id, parent_order_id){
     request_private_get(
@@ -256,9 +261,10 @@ get_parent_orders <- function(product_code, count = 100, before = NA, after = NA
 #'
 #' Get Parent Order Details
 #'
-#' @param parent_order_id The ID of the parent order in question.
-#' @param parent_order_acceptance_id The acceptance ID for the API to place a new parent order.
-#'   If specified, it returns the details of the parent order in question.
+#' @inheritParams parent_order_id
+#' @inheritParams parent_order_acceptance_id
+#' @details
+#' If \code{parent_order_acceptance_id} is specified, it returns the details of the parent order in question.
 #' @export
 get_parent_order <- function(parent_order_id, parent_order_acceptance_id){
     request_private_get(
@@ -270,11 +276,23 @@ get_parent_order <- function(parent_order_id, parent_order_acceptance_id){
 #' List Executions
 #'
 #' List Executions
-NULL
+#'
+#' @inheritParams product_code
+#' @inheritParams count_before_after
+#' @inheritParams child_order_id
+#' @inheritParams child_order_acceptance_id
+#' @details
+#' When \code{child_order_id} is specified, a list of stipulations related to the order will be displayed.
+#' When \code{child_order_acceptance_id} is specified, a list of stipulations related to the corresponding order will be displayed.
+#' @export
+get_executions <- function(){
+
+}
 
 #' Get Open Interest Summary
 #'
 #' Get Open Interest Summary
+#'
 #' @param product_code Currently supports only "FX_BTC_JPY".
 #' @export
 get_positions <- function(product_code="FX_BTC_JPY"){

@@ -2,13 +2,9 @@
 % Please edit documentation in R/public.R
 \name{executions}
 \alias{executions}
-\alias{get_executions}
 \title{Execution History}
 \usage{
 executions(product_code = "BTC_JPY", count = 100, before = NA,
-  after = NA)
-
-get_executions(product_code = "BTC_JPY", count = 100, before = NA,
   after = NA)
 }
 \arguments{
@@ -25,4 +21,7 @@ and only "BTC_EUR" is available for European accounts.}
 }
 \description{
 Get Execution History
+}
+\note{
+API endpoint \code{/v1/getexecutions} is not implemented because there is the same name endpoint in private API
 }

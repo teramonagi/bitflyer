@@ -21,18 +21,23 @@ and only "BTC_EUR" is available for European accounts.}
 
 \item{child_order_state}{When specified, return only orders that match the specified value.
 You must specify one of the following:
-ACTIVE: Return open orders
-COMPLETED: Return fully completed orders
-CANCELED: Return orders that have been cancelled by the customer
-EXPIRED: Return order that have been cancelled due to expiry
-REJECTED: Return failed orders}
+\itemize{
+  \item "ACTIVE": Return open orders
+  \item "COMPLETED": Return fully completed orders
+  \item "CANCELED": Return orders that have been cancelled by the customer
+  \item "EXPIRED": Return order that have been cancelled due to expiry
+  \item "REJECTED": Return failed orders
+}}
 
 \item{child_order_id}{ID for the child order.}
 
-\item{child_order_acceptance_id}{ID for the child order.}
+\item{child_order_acceptance_id}{Expects an ID from \code{\link{send_child_order}}}
 
-\item{parent_order_id}{If specified, a list of all orders associated with the parent order is obtained.}
+\item{parent_order_id}{The ID of the parent order in question.}
 }
 \description{
 List Orders
+}
+\details{
+If \code{parent_order_id} is specified, a list of all orders associated with the parent order is obtained.
 }

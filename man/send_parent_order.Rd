@@ -7,11 +7,13 @@
 send_parent_order()
 }
 \description{
+Submit New Parent Order (Special order)
+}
+\details{
 It is possible to place orders including logic other than simple limit orders (LIMIT)
 and market orders (MARKET). Such orders are handled as parent orders.
 By using a special order, it is possible to place orders in response to market conditions or place multiple associated orders.
-}
-\details{
+
 Please read about the types of special orders and their methods in the bitFlyer Lightning documentation on special orders:
 \url{https://lightning.bitflyer.com/docs/specialorder}.
 }

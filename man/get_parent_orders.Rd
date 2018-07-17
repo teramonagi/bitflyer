@@ -21,11 +21,13 @@ and only "BTC_EUR" is available for European accounts.}
 
 \item{child_order_state}{When specified, return only orders that match the specified value.
 You must specify one of the following:
-ACTIVE: Return open orders
-COMPLETED: Return fully completed orders
-CANCELED: Return orders that have been cancelled by the customer
-EXPIRED: Return order that have been cancelled due to expiry
-REJECTED: Return failed orders}
+\itemize{
+  \item "ACTIVE": Return open orders
+  \item "COMPLETED": Return fully completed orders
+  \item "CANCELED": Return orders that have been cancelled by the customer
+  \item "EXPIRED": Return order that have been cancelled due to expiry
+  \item "REJECTED": Return failed orders
+}}
 }
 \description{
 List Parent Orders

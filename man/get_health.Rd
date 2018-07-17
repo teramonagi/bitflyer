@@ -14,12 +14,14 @@ and only "BTC_EUR" is available for European accounts.}
 }
 \value{
 One of the following levels
-   NORMAL: The exchange is operating.
-   BUSY: The exchange is experiencing high traffic.
-   VERY BUSY: The exchange is experiencing heavy traffic.
-   SUPER BUSY: The exchange is experiencing extremely heavy traffic.
+ \itemize{
+   \item NORMAL: The exchange is operating.
+   \item BUSY: The exchange is experiencing high traffic.
+   \item VERY BUSY: The exchange is experiencing heavy traffic.
+   \item SUPER BUSY: The exchange is experiencing extremely heavy traffic.
      There is a possibility that orders will fail or be processed after a delay.
-   STOP: The exchange has been stopped. Orders will not be accepted.
+   \item STOP: The exchange has been stopped. Orders will not be accepted.
+ }
 }
 \description{
 Get the current status of the exchange.
@@ -28,5 +30,4 @@ Get the current status of the exchange.
 \dontrun{
 get_health()
 }
-
 }

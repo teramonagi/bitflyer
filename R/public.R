@@ -62,13 +62,12 @@ get_ticker <- func_product_code
 #'
 #' @inheritParams  product_code
 #' @inheritParams  count_before_after
+#' @note
+#' API endpoint \code{/v1/getexecutions} is not implemented because there is the same name endpoint in private API
 #' @export
 executions <- function(product_code = "BTC_JPY", count = 100, before = NA, after = NA){
   request_public_get(product_code=product_code, count=count, before=before, after=after)
 }
-#' @rdname executions
-#' @export
-get_executions <- executions
 
 #' Exchange status
 #'
@@ -76,18 +75,19 @@ get_executions <- executions
 #'
 #' @inheritParams product_code
 #' @return
-#'  One of the following levels
-#'    NORMAL: The exchange is operating.
-#'    BUSY: The exchange is experiencing high traffic.
-#'    VERY BUSY: The exchange is experiencing heavy traffic.
-#'    SUPER BUSY: The exchange is experiencing extremely heavy traffic.
+#'   One of the following levels
+#'   \itemize{
+#'     \item NORMAL: The exchange is operating.
+#'     \item BUSY: The exchange is experiencing high traffic.
+#'     \item VERY BUSY: The exchange is experiencing heavy traffic.
+#'     \item SUPER BUSY: The exchange is experiencing extremely heavy traffic.
 #'      There is a possibility that orders will fail or be processed after a delay.
-#'    STOP: The exchange has been stopped. Orders will not be accepted.
+#'     \item STOP: The exchange has been stopped. Orders will not be accepted.
+#'   }
 #' @examples
 #' \dontrun{
 #' get_health()
 #' }
-#'
 #' @export
 get_health <- func_product_code
 

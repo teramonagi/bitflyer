@@ -9,9 +9,11 @@ get_parent_order(parent_order_id, parent_order_acceptance_id)
 \arguments{
 \item{parent_order_id}{The ID of the parent order in question.}
 
-\item{parent_order_acceptance_id}{The acceptance ID for the API to place a new parent order.
-If specified, it returns the details of the parent order in question.}
+\item{parent_order_acceptance_id}{Expects an ID from \code{\link{send_parent_order}}}
 }
 \description{
 Get Parent Order Details
+}
+\details{
+If \code{parent_order_acceptance_id} is specified, it returns the details of the parent order in question.
 }

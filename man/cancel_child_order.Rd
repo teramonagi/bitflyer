@@ -12,9 +12,9 @@ If omitted, the value is set to "BTC_JPY".
 Only "BTC_USD" is available for U.S. accounts,
 and only "BTC_EUR" is available for European accounts.}
 
-\item{child_order_id}{ID for the canceling order.}
+\item{child_order_id}{ID for the child order.}
 
-\item{child_order_acceptance_id}{Expects an ID from Send a New Order. When specified, the corresponding order will be cancelled.}
+\item{child_order_acceptance_id}{Expects an ID from \code{\link{send_child_order}}}
 }
 \description{
 Cancel Order

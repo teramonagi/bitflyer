@@ -6,13 +6,10 @@
 \usage{
 cancel_parent_order()
 }
-\arguments{
-\item{parent_order_id}{ID for the canceling order.}
-
-\item{parent_order_acceptance_id}{Expects an ID from Submit New Parent Order.
-When specified, the corresponding order will be cancelled.}
-}
 \description{
 Parent orders can be canceled in the same manner as regular orders.
 If a parent order is canceled, the placed orders associated with that order will all be canceled.
+}
+\details{
+When \code{parent_order_acceptance_id} is specified, the corresponding order will be cancelled.
 }
