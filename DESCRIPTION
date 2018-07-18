@@ -13,7 +13,7 @@ Imports:
     stringr,
     httr,
     digest,
-    jsonlite
+    jsonlite  
 Suggests:
     testthat
 Encoding: UTF-8
