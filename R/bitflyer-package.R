@@ -3,7 +3,7 @@
 #' Make it easier to use bitFlyer's REST API
 #'
 #' @name bitflyer
-#' @importFrom dplyr desc
+#' @import dplyr purrr stringr httr digest jsonlite
 #' @docType package
 NULL
 

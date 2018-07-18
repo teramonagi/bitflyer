@@ -2,12 +2,15 @@
 % Please edit documentation in R/manual-template.R
 \name{count_before_after}
 \alias{count_before_after}
-\title{Params count, before, after}
+\title{count, before, after}
 \arguments{
 \item{count}{Specifies the number of results. If this is omitted, the value will be 100.}
 
 \item{before}{Obtains data having an id lower than the value specified for this parameter.}
 
 \item{after}{Obtains data having an id higher than the value specified for this parameter.}
+}
+\description{
+count_before_after
 }
 \keyword{internal}

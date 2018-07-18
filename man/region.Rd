@@ -2,8 +2,11 @@
 % Please edit documentation in R/manual-template.R
 \name{region}
 \alias{region}
-\title{Params region}
+\title{region}
 \arguments{
 \item{region}{empty string ("") or "usa"}
+}
+\description{
+region
 }
 \keyword{internal}

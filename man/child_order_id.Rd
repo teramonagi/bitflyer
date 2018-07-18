@@ -2,8 +2,11 @@
 % Please edit documentation in R/manual-template.R
 \name{child_order_id}
 \alias{child_order_id}
-\title{Params child_order_id}
+\title{child_order_id}
 \arguments{
 \item{child_order_id}{ID for the child order.}
+}
+\description{
+child_order_id
 }
 \keyword{internal}

@@ -2,11 +2,14 @@
 % Please edit documentation in R/manual-template.R
 \name{product_code}
 \alias{product_code}
-\title{Params product_code}
+\title{product_code}
 \arguments{
 \item{product_code}{A product_code or alias, as obtained from the Market List.
 If omitted, the value is set to "BTC_JPY".
 Only "BTC_USD" is available for U.S. accounts,
 and only "BTC_EUR" is available for European accounts.}
+}
+\description{
+product_code
 }
 \keyword{internal}

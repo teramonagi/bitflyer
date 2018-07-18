@@ -12,11 +12,11 @@ request_public_get <- function(..., region = "")
 }
 
 func_product_code <- function(product_code = "BTC_JPY"){
-  request_public_get(product_code=product_code)
+  request_public_get(product_code = product_code)
 }
 
 func_region <- function(region = "") {
-  request_public_get(region=region)
+  request_public_get(region = region)
 }
 
 #' Market List
@@ -66,7 +66,12 @@ get_ticker <- func_product_code
 #' API endpoint \code{/v1/getexecutions} is not implemented because there is the same name endpoint in private API
 #' @export
 executions <- function(product_code = "BTC_JPY", count = 100, before = NA, after = NA){
-  request_public_get(product_code=product_code, count=count, before=before, after=after)
+  request_public_get(
+    product_code = product_code,
+    count = count,
+    before = before,
+    after = after
+  )
 }
 
 #' Exchange status

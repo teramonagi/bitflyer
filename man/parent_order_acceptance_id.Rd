@@ -2,8 +2,11 @@
 % Please edit documentation in R/manual-template.R
 \name{parent_order_acceptance_id}
 \alias{parent_order_acceptance_id}
-\title{Params parent_order_acceptance_id}
+\title{parent_order_acceptance_id}
 \arguments{
 \item{parent_order_acceptance_id}{Expects an ID from \code{\link{send_parent_order}}}
+}
+\description{
+parent_order_acceptance_id
 }
 \keyword{internal}

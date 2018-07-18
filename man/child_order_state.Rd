@@ -2,7 +2,7 @@
 % Please edit documentation in R/manual-template.R
 \name{child_order_state}
 \alias{child_order_state}
-\title{Params cild_order_state}
+\title{cild_order_state}
 \arguments{
 \item{child_order_state}{When specified, return only orders that match the specified value.
 You must specify one of the following:
@@ -13,5 +13,8 @@ You must specify one of the following:
   \item "EXPIRED": Return order that have been cancelled due to expiry
   \item "REJECTED": Return failed orders
 }}
+}
+\description{
+cild_order_state
 }
 \keyword{internal}

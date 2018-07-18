@@ -32,7 +32,7 @@ request_private <- function(calling_function, method, query = NULL, body = NULL,
     `Content-Type`="application/json"
   )
   # Create header
-  request(method, url, header, query=query, body=body)
+  request(method, url, header, query = query, body = body)
 }
 
 func_no_argument_private_get <- function() {
@@ -189,8 +189,54 @@ cancel_child_order <- function(product_code, child_order_id, child_order_accepta
 #'
 #' Please read about the types of special orders and their methods in the bitFlyer Lightning documentation on special orders:
 #' \url{https://lightning.bitflyer.com/docs/specialorder}.
+#'
+#' @param order_method The order method. Please set it to one of the following values. If omitted, the value defaults to "SIMPLE".
+#'   \itemize{
+#'     \item "SIMPLE": A special order whereby one order is placed.
+#'     \item "IFD": Conducts an IFD order. In this method, you place two orders at once, and when the first order is completed, the second order is automatically placed.
+#'     \item "OCO": Conducts an OCO order. In this method, you place two orders at one, and when one of the orders is completed, the other order is automatically canceled.
+#'     \item "IFDOCO": Conducts an IFD-OCO order. In this method, once the first order is completed, an OCO order is automatically placed.
+#'   }
+#' @param minute_to_expire Specifies the time until the order expires in minutes. If omitted, the value defaults to 43200 (30 days).
+#' @param time_in_force Specify any of the following execution conditions - "GTC", "IOC", or "FOK". If omitted, the value defaults to "GTC".
+#' @param parameters This is an array that specifies the parameters of the order to be placed.
+#'   The required length of the array varies depending upon the specified order_method.
+#'   If "SIMPLE" has been specified, specify one parameter.
+#'   If "IFD" has been specified, specify two parameters. The first parameter is the parameter for the first order placed. The second parameter is the parameter for the order to be placed after the first order is completed.
+#'   If "OCO" has been specified, specify two parameters. Two orders are placed simultaneously based on these parameters.
+#'   If "IFDOCO" has been specified, specify three parameters. The first parameter is the parameter for the first order placed. After the order is complete, an OCO order is placed with the second and third parameters.
+#'   In the parameters, specify an array of objects with the following keys and values.
+#' @inheritParams product_code
+#' @param condition_type This is the execution condition for the order. Please set it to one of the following values.
+#'   \itemize{
+#'     \item "LIMIT": Limit order.
+#'     \item "MARKET": Market order.
+#'     \item "STOP": Stop order.
+#'     \item "STOP_LIMIT": Stop-limit order.
+#'     \item "TRAIL": Trailing stop order.
+#'  }
+#' @param side For buying orders, specify "BUY", for selling orders, specify "SELL".
+#' @param size Specify the order quantity.
+#' @param price Specify the price. This is a required value if condition_type has been set to "LIMIT" or "STOP_LIMIT".
+#' @param trigger_price Specify the trigger price for a stop order. This is a required value if condition_type has been set to "STOP" or "STOP_LIMIT".
+#' @param offset Specify the trail width of a trailing stop order as a positive integer. This is a required value if condition_type has been set to "TRAIL".
+#'
 #' @export
-send_parent_order <- make_request_private_post
+send_parent_order <- function(order_method, minute_to_expire, time_in_force, parameters, product_code, condition_type, side, size, price, trigger_price, offset) {
+  request_private_post(
+    order_method = order_method,
+    minute_to_expire = minute_to_expire,
+    time_in_force = time_in_force,
+    parameters = parameters,
+    product_code = product_code,
+    condition_type = condition_type,
+    side = side,
+    size = size,
+    price = price,
+    trigger_price = trigger_price,
+    offset = offset
+  )
+}
 
 #' Cancel parent order
 #'
@@ -285,8 +331,15 @@ get_parent_order <- function(parent_order_id, parent_order_acceptance_id){
 #' When \code{child_order_id} is specified, a list of stipulations related to the order will be displayed.
 #' When \code{child_order_acceptance_id} is specified, a list of stipulations related to the corresponding order will be displayed.
 #' @export
-get_executions <- function(){
-
+get_executions <- function(product_code, count = 100, before = NA, after = NA, child_order_id, child_order_acceptance_id){
+  request_private_get(
+    product_code = product_code,
+    count = count,
+    before = before,
+    after = after,
+    child_order_id = child_order_id,
+    child_order_acceptance_id = child_order_acceptance_id
+  )
 }
 
 #' Get Open Interest Summary

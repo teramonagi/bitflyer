@@ -43,7 +43,7 @@ check_region <- function(region) {
   region
 }
 
-request <- function(method, url, ..., query=NULL, body=NULL)
+request <- function(method, url, ..., query = NULL, body = NULL)
 {
   response <- if(method == "GET"){
     httr::GET(url, ..., query=query)
