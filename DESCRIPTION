@@ -25,3 +25,4 @@ Collate:
     'util.R'
     'private.R'
     'public.R'
+    'utils.R'
