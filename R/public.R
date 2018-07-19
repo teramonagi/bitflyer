@@ -24,6 +24,11 @@ func_region <- function(region = "") {
 #' Get the list of market
 #'
 #' @inheritParams region
+#' @examples
+#' \dontrun{
+#'   markets()
+#'   get_markets(region = "us")
+#' }
 #' @export
 markets <- func_region
 
@@ -37,6 +42,11 @@ get_markets <- func_region
 #'
 #' @rdname board
 #' @inheritParams product_code
+#' @examples
+#' \dontrun{
+#'   board()
+#'   get_board(product_code = "BTC_USD")
+#' }
 #' @export
 board <- func_product_code
 
@@ -49,6 +59,10 @@ get_board <- func_product_code
 #' Get ticker
 #'
 #' @inheritParams product_code
+#' \dontrun{
+#'   ticker(product_code = "BTC_JPY")
+#'   get_ticker(product_code = "BTC_JPY")
+#' }
 #' @export
 ticker <- func_product_code
 
@@ -64,6 +78,11 @@ get_ticker <- func_product_code
 #' @inheritParams  count_before_after
 #' @note
 #' API endpoint \code{/v1/getexecutions} is not implemented because there is the same name endpoint in private API
+#' @examples
+#' \dontrun{
+#'   executions()
+#'   executions(product_code="BCH_BTC", count=3, before="303218244")
+#' }
 #' @export
 executions <- function(product_code = "BTC_JPY", count = 100, before = NA, after = NA){
   request_public_get(
@@ -102,6 +121,10 @@ get_health <- func_product_code
 #'
 #' @param from_date string (e.g. 2018-06-30).
 #'   The function returns new messages after this date.
+#' @examples
+#' \dontrun{
+#'   get_chats(from_date="2018-07-19")
+#' }
 #' @export
 get_chats <- function(from_date){
   request_public_get(from_date = from_date)

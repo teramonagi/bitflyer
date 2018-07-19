@@ -13,3 +13,8 @@ The function returns new messages after this date.}
 \description{
 Get the history of chats
 }
+\examples{
+\dontrun{
+  get_chats(from_date="2018-07-19")
+}
+}

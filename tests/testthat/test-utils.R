@@ -20,3 +20,25 @@ test_that("calling_function_name() works", {
   cf1 <- f1()
   expect_equal(cf1, "f1")
 })
+
+
+test_that("check_region() works", {
+  # Japan
+  for(region in c("", "jpn", "jp")){
+    expect_equal(check_region(region), "")
+  }
+
+  # UAA
+  for(region in c("usa", "us")){
+    expect_equal(check_region(region), "usa")
+  }
+
+  # EURO
+  for(region in c("eu", "euro")){
+    expect_equal(check_region(region), "eu")
+  }
+
+  # Raise errors
+  expect_error(check_region("chaina"))
+  expect_error(check_region("japon"))
+})

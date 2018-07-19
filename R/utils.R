@@ -39,10 +39,17 @@ build_url <- function(version, method, calling_function, region, query)
 
 check_region <- function(region) {
   region <- stringr::str_to_lower(region)
+  japan <- c("", "jpn", "jp")
+  usa <- c("usa", "us")
+  euro <- c("eu", "euro")
   # Messy to use match.arg()
   # https://stackoverflow.com/questions/41441170/failure-of-match-arg-for-the-empty-string
-  stopifnot(region %in% c("", "usa", "eu"))
-  region
+  stopifnot(region %in% c(japan, usa, euro))
+  for(country in list(japan, usa, euro)){
+    if(region %in% country){
+      return(country[1])
+    }
+  }
 }
 
 request <- function(method, url, ..., query = NULL, body = NULL)
@@ -58,13 +65,6 @@ request <- function(method, url, ..., query = NULL, body = NULL)
 }
 
 if(FALSE){
-  get_health()
-  get_markets()
-  markets()
-  markets(region="usa")
-  board()
-  get_ticker()
-  ticker(product_code="BTC_USD")
   get_balance()
   #send_child_order(product_code="BTC_JPY", child_order_type="LIMIT", side="BUY", price=699000, size=0.001)
   get_collateral()
@@ -89,27 +89,6 @@ if(FALSE){
   withdraw()
   getwithdrawals()
   #Public
-  markets()
-  markets(region="USA")
-  markets(region="eu")
-  get_markets()
-  get_markets(region="EU")
-  board()
-  board(product_code="BTC_JPY")
-  board(product_code="BCH_BTC")
-  get_board()
-  get_board(product_code="BTC_JPY")
-  get_board(product_code="BCH_BTC")
-  ticker()
-  ticker(product_code="BTC_JPY")
-  ticker(product_code="BCH_BTC")
-  get_ticker()
-  get_ticker(product_code="BTC_JPY")
-  get_ticker(product_code="BCH_BTC")
-  executions()
-  executions(product_code="BTC_JPY", count=3)
-  executions(product_code="BCH_BTC", count=3, before="303218244")
-  get_executions()
   get_health()
   get_health(product_code="BTC_JPY")
   get_health(product_code="BCH_BTC")

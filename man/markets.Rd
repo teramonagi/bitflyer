@@ -10,8 +10,19 @@ markets(region = "")
 get_markets(region = "")
 }
 \arguments{
-\item{region}{empty string ("") or "usa" or "eu"}
+\item{region}{Default value ("") is Japan.
+\itemize{
+  \item Japan: ""(Default), "ja", "jpn
+  \item Usa: "us", "usa"
+  \item Euro: "eu"
+}}
 }
 \description{
 Get the list of market
+}
+\examples{
+\dontrun{
+  markets()
+  get_markets(region = "us")
+}
 }
