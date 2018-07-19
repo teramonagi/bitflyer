@@ -12,7 +12,7 @@ NULL
 #' @description region
 #' @name region
 #' @keywords internal
-#' @param region empty string ("") or "usa"
+#' @param region empty string ("") or "usa" or "eu"
 NULL
 
 #' @title count, before, after

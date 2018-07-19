@@ -4,7 +4,7 @@
 \alias{region}
 \title{region}
 \arguments{
-\item{region}{empty string ("") or "usa"}
+\item{region}{empty string ("") or "usa" or "eu"}
 }
 \description{
 region

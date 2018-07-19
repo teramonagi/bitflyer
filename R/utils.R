@@ -52,8 +52,9 @@ request <- function(method, url, ..., query = NULL, body = NULL)
   } else{
     httr::POST(url, ..., body=body)
   }
-  httr::stop_for_status(response)
-  httr::content(response, as="text")
+  content <- httr::content(response, as="text")
+  httr::stop_for_status(response, task = content)
+  content
 }
 
 if(FALSE){

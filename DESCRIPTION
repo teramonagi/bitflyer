@@ -1,7 +1,7 @@
 Package: bitflyer
 Type: Package
 Title: R wrapper for bitFlyer's REST API
-Version: 0.1.0
+Version: 0.2.0
 Authors@R: c(
   person("Nagi", "Teramo", , "teramonagi@gmail.com", c("aut", "cre")),
   person("Shinichi", "Takayanagi", , "shinichi.takayanagi@gmail.com", "aut"))
@@ -22,7 +22,6 @@ RoxygenNote: 6.0.1
 Collate: 
     'bitflyer-package.R'
     'manual-template.R'
-    'util.R'
+    'utils.R'
     'private.R'
     'public.R'
-    'utils.R'

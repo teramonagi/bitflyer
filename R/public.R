@@ -1,4 +1,4 @@
-#' @include manual-template.R util.R
+#' @include manual-template.R utils.R
 NULL
 
 # Functions in this souce file

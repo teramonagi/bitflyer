@@ -10,7 +10,7 @@ markets(region = "")
 get_markets(region = "")
 }
 \arguments{
-\item{region}{empty string ("") or "usa"}
+\item{region}{empty string ("") or "usa" or "eu"}
 }
 \description{
 Get the list of market
