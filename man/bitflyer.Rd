@@ -6,5 +6,5 @@
 \alias{bitflyer-package}
 \title{R Wrapper for bitFlyer's REST API}
 \description{
-Make it easier to use bitFlyer's REST API
+Make it easier to use bitFlyer's REST API (\url{https://lightning.bitflyer.com/docs?lang=en})
 }
