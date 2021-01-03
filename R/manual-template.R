@@ -12,7 +12,12 @@ NULL
 #' @description region
 #' @name region
 #' @keywords internal
-#' @param region empty string ("") or "usa"
+#' @param region Default value ("") is Japan.
+#'   \itemize{
+#'     \item Japan: ""(Default), "ja", "jpn
+#'     \item Usa: "us", "usa"
+#'     \item Euro: "eu"
+#'   }
 NULL
 
 #' @title count, before, after

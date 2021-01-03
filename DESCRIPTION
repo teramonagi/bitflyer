@@ -23,7 +23,6 @@ RoxygenNote: 6.0.1
 Collate: 
     'bitflyer-package.R'
     'manual-template.R'
-    'util.R'
+    'utils.R'
     'private.R'
     'public.R'
-    'utils.R'

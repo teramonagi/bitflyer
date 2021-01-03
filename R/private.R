@@ -1,4 +1,4 @@
-#' @include manual-template.R util.R
+#' @include manual-template.R utils.R
 NULL
 
 # Functions in this souce file
@@ -12,7 +12,7 @@ request_private_get <- function(..., region = "")
 request_private_post <- function(..., region = "")
 {
   calling_function <- calling_function_name(-2)
-  body <- jsonlite::toJSON(list(...), auto_unbox=TRUE)
+  body <- jsonlite::toJSON(purrr::compact(list(...)), auto_unbox=TRUE)
   request_private(calling_function, "POST", body = body, region = region)
 }
 
@@ -49,7 +49,7 @@ func_count_before_after_private_get <- function(count = 100, before = NA, after 
 
 #' Get API Key Permissions
 #'
-#' Access a list of which HTTP Private APIs can be used with the specified API key
+#' Get a list of which HTTP Private APIs can be used with the specified API key
 #'
 #' @export
 get_permissions <- func_no_argument_private_get

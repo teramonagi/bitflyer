@@ -18,3 +18,9 @@ and only "BTC_EUR" is available for European accounts.}
 \description{
 Get order book
 }
+\examples{
+\dontrun{
+  board()
+  get_board(product_code = "BTC_USD")
+}
+}

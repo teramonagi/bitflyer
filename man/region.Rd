@@ -4,7 +4,12 @@
 \alias{region}
 \title{region}
 \arguments{
-\item{region}{empty string ("") or "usa"}
+\item{region}{Default value ("") is Japan.
+\itemize{
+  \item Japan: ""(Default), "ja", "jpn
+  \item Usa: "us", "usa"
+  \item Euro: "eu"
+}}
 }
 \description{
 region

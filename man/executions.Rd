@@ -25,3 +25,9 @@ Get Execution History
 \note{
 API endpoint \code{/v1/getexecutions} is not implemented because there is the same name endpoint in private API
 }
+\examples{
+\dontrun{
+  executions()
+  executions(product_code="BCH_BTC", count=3, before="303218244")
+}
+}

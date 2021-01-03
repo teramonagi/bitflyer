@@ -9,12 +9,6 @@ ticker(product_code = "BTC_JPY")
 
 get_ticker(product_code = "BTC_JPY")
 }
-\arguments{
-\item{product_code}{A product_code or alias, as obtained from the Market List.
-If omitted, the value is set to "BTC_JPY".
-Only "BTC_USD" is available for U.S. accounts,
-and only "BTC_EUR" is available for European accounts.}
-}
 \description{
 Get ticker
 }

@@ -7,5 +7,5 @@
 get_permissions()
 }
 \description{
-Access a list of which HTTP Private APIs can be used with the specified API key
+Get a list of which HTTP Private APIs can be used with the specified API key
 }
