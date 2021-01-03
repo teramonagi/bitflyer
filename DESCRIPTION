@@ -1,11 +1,12 @@
 Package: bitflyer
 Type: Package
-Title: R wrapper for bitFlyer's REST API
-Version: 0.2.0
+Title: R Wrapper for bitFlyer's REST API
+Version: 0.1.0
 Authors@R: c(
   person("Nagi", "Teramo", , "teramonagi@gmail.com", c("aut", "cre")),
   person("Shinichi", "Takayanagi", , "shinichi.takayanagi@gmail.com", "aut"))
 Description: Make it easier to use bitFlyer's REST API.
+  See <https://lightning.bitflyer.com/docs?lang=en> for more information.
 License: MIT + file LICENSE
 Imports:
     dplyr,
