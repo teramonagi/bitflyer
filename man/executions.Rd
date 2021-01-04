@@ -4,8 +4,7 @@
 \alias{executions}
 \title{Execution History}
 \usage{
-executions(product_code = "BTC_JPY", count = 100, before = NA,
-  after = NA)
+executions(product_code = "BTC_JPY", count = 100, before = NA, after = NA)
 }
 \arguments{
 \item{product_code}{A product_code or alias, as obtained from the Market List.

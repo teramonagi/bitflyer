@@ -4,8 +4,19 @@
 \alias{send_parent_order}
 \title{Submit New Parent Order (Special order)}
 \usage{
-send_parent_order(order_method, minute_to_expire, time_in_force, parameters,
-  product_code, condition_type, side, size, price, trigger_price, offset)
+send_parent_order(
+  order_method,
+  minute_to_expire,
+  time_in_force,
+  parameters,
+  product_code,
+  condition_type,
+  side,
+  size,
+  price,
+  trigger_price,
+  offset
+)
 }
 \arguments{
 \item{order_method}{The order method. Please set it to one of the following values. If omitted, the value defaults to "SIMPLE".

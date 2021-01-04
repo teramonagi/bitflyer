@@ -4,8 +4,14 @@
 \alias{get_executions}
 \title{List Executions}
 \usage{
-get_executions(product_code, count = 100, before = NA, after = NA,
-  child_order_id, child_order_acceptance_id)
+get_executions(
+  product_code,
+  count = 100,
+  before = NA,
+  after = NA,
+  child_order_id,
+  child_order_acceptance_id
+)
 }
 \arguments{
 \item{product_code}{A product_code or alias, as obtained from the Market List.

@@ -4,8 +4,13 @@
 \alias{get_parent_orders}
 \title{List Parent Orders}
 \usage{
-get_parent_orders(product_code, count = 100, before = NA, after = NA,
-  child_order_state)
+get_parent_orders(
+  product_code,
+  count = 100,
+  before = NA,
+  after = NA,
+  child_order_state
+)
 }
 \arguments{
 \item{product_code}{A product_code or alias, as obtained from the Market List.

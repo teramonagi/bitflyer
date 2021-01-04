@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 [![Build Status](https://travis-ci.org/teramonagi/bitflyer.svg?branch=master)](https://travis-ci.org/teramonagi/bitflyer)
 
-R wrapper for bitFlyer's REST API
+R wrapper for [bitFlyer's API](https://lightning.bitflyer.com/docs/api)
 
 ## Installation
 
@@ -29,15 +29,19 @@ devtools::install_github("teramonagi/bitflyer")
 ```
 
 ## Example
-### Public API
+
+### HTTP API
+#### [HTTP Public API](https://lightning.bitflyer.com/docs/api#http-public-api)
+
 ```{r public_api}
 library("bitflyer")
 # Get the list of market
-get_markets()
+fromJSON(get_markets())
 
 # Get order book
 x <- board(product_code = "BTC_JPY")
-stringr::str_sub(x, 1, 200)
+x <- fromJSON(x)
+str(x)
 
 # Get the current status of the exchange.
 get_health()
@@ -45,7 +49,8 @@ get_health()
 # ... etc
 ```
 
-### Private API
+- [HTTP Private API](https://lightning.bitflyer.com/docs/api#http-private-api)
+
 ```{r private_api}
 # Get a list of which HTTP Private APIs can be used with the specified API key
 get_permissions()
@@ -58,12 +63,15 @@ x <- send_child_order(
   product_code = "BTC_JPY", 
   child_order_type = "LIMIT", 
   side = "BUY", 
-  price = 50*10^4, 
+  price = 300*10^4, 
   size = 0.001
 )
 
+# List Orders
+get_child_orders(product_code = "BTC_JPY")
+
 # Cancel Order
-id <- jsonlite::fromJSON(x)$child_order_acceptance_id
+id <- fromJSON(x)$child_order_acceptance_id
 print(id)
 cancel_child_order(product_code = "BTC_JPY", child_order_id = NULL, child_order_acceptance_id = id)
 
@@ -72,3 +80,7 @@ get_trading_commission(product_code = "BTC_JPY")
 
 # ... etc
 ```
+
+
+### Realtime API
+... under development ...

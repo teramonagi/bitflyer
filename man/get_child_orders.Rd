@@ -4,8 +4,16 @@
 \alias{get_child_orders}
 \title{List Orders}
 \usage{
-get_child_orders(product_code, count = 100, before = NA, after = NA,
-  child_order_state, child_order_id, child_order_acceptance_id, parent_order_id)
+get_child_orders(
+  product_code,
+  count = 100,
+  before = NA,
+  after = NA,
+  child_order_state,
+  child_order_id,
+  child_order_acceptance_id,
+  parent_order_id
+)
 }
 \arguments{
 \item{product_code}{A product_code or alias, as obtained from the Market List.

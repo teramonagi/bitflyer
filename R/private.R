@@ -24,9 +24,9 @@ request_private <- function(calling_function, method, query = NULL, body = NULL,
   timestamp <- as.numeric(Sys.time())
   # Sign
   text <- paste0(timestamp, method, path, body)
-  sign <- digest::hmac(key=get_from_env_or_global_env("BITFLYER_SECRET"), object=text, algo="sha256", serialize=FALSE)
+  sign <- digest::hmac(key=get_from_env_or_global_env("BITFLYER_LIGHTNING_API_SECRET"), object=text, algo="sha256", serialize=FALSE)
   header <- httr::add_headers(
-    `ACCESS-KEY`=get_from_env_or_global_env("BITFLYER_KEY"),
+    `ACCESS-KEY`=get_from_env_or_global_env("BITFLYER_LIGHTNING_API_KEY"),
     `ACCESS-TIMESTAMP`=timestamp,
     `ACCESS-SIGN`=sign,
     `Content-Type`="application/json"
@@ -272,7 +272,7 @@ cancel_all_childorders <- func_product_code_private_get
 #' @details
 #' If \code{parent_order_id} is specified, a list of all orders associated with the parent order is obtained.
 #' @export
-get_child_orders <- function(product_code, count = 100, before = NA, after = NA, child_order_state, child_order_id, child_order_acceptance_id, parent_order_id){
+get_child_orders <- function(product_code, count = 100, before = NA, after = NA, child_order_state = NULL, child_order_id = NULL, child_order_acceptance_id = NULL, parent_order_id = NULL){
     request_private_get(
       product_code = product_code,
       count = count,
