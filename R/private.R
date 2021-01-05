@@ -1,21 +1,26 @@
 #' @include manual-template.R utils.R
 NULL
 
-# Functions in this souce file
+#' Functions in this souce file
+#' @importFrom purrr compact
+#' @noRd
 request_private_get <- function(..., region = "")
 {
   calling_function <- calling_function_name(-2)
-  query <- list(...)
+  query <- purrr::compact(list(...))
   request_private(calling_function, "GET", query = query, region = region)
 }
 
+#' @noRd
 request_private_post <- function(..., region = "")
 {
   calling_function <- calling_function_name(-2)
-  body <- jsonlite::toJSON(purrr::compact(list(...)), auto_unbox=TRUE)
+  query <- purrr::compact(list(...))
+  body <- jsonlite::toJSON(query, auto_unbox=TRUE)
   request_private(calling_function, "POST", body = body, region = region)
 }
 
+#' @noRd
 request_private <- function(calling_function, method, query = NULL, body = NULL, region = "") {
   region <- check_region(region)
   path <- build_path("v1/me", method, calling_function, region, query)
@@ -35,17 +40,22 @@ request_private <- function(calling_function, method, query = NULL, body = NULL,
   request(method, url, header, query = query, body = body)
 }
 
+#' @noRd
 func_no_argument_private_get <- function() {
   request_private_get()
 }
 
+#' @noRd
 func_product_code_private_get <- function(product_code) {
   request_private_get(product_code = product_code)
 }
 
+#' @noRd
 func_count_before_after_private_get <- function(count = 100, before = NA, after = NA){
   request_private_get(count = count, before = before, after = after)
 }
+
+# Exported functions (APIs)
 
 #' Get API Key Permissions
 #'
@@ -170,7 +180,7 @@ send_child_order <- function(product_code, child_order_type, side, price, size, 
 #' @inheritParams child_order_id
 #' @inheritParams child_order_acceptance_id
 #' @export
-cancel_child_order <- function(product_code, child_order_id, child_order_acceptance_id) {
+cancel_child_order <- function(product_code, child_order_id = NULL, child_order_acceptance_id = NULL) {
   request_private_post(
     product_code = product_code,
     child_order_id = child_order_id,
@@ -271,18 +281,20 @@ cancel_all_childorders <- func_product_code_private_get
 #' @inheritParams parent_order_id
 #' @details
 #' If \code{parent_order_id} is specified, a list of all orders associated with the parent order is obtained.
+#' @importFrom glue glue
 #' @export
-get_child_orders <- function(product_code, count = 100, before = NA, after = NA, child_order_state = NULL, child_order_id = NULL, child_order_acceptance_id = NULL, parent_order_id = NULL){
-    request_private_get(
-      product_code = product_code,
-      count = count,
-      before = before,
-      after = after,
-      child_order_state = child_order_state,
-      child_order_id = child_order_id,
-      child_order_acceptance_id = child_order_acceptance_id,
-      parent_order_id = parent_order_id
-    )
+get_child_orders <- function(product_code, count = 100, before = 0, after = 0, child_order_state = NULL, child_order_id = NULL, child_order_acceptance_id = NULL, parent_order_id = NULL){
+  stop_for_order_status(child_order_state)
+  request_private_get(
+    product_code = product_code,
+    count = count,
+    before = before,
+    after = after,
+    child_order_state = child_order_state,
+    child_order_id = child_order_id,
+    child_order_acceptance_id = child_order_acceptance_id,
+    parent_order_id = parent_order_id
+  )
 }
 
 #' List Parent Orders
@@ -293,7 +305,7 @@ get_child_orders <- function(product_code, count = 100, before = NA, after = NA,
 #' @inheritParams count_before_after
 #' @inheritParams child_order_state
 #' @export
-get_parent_orders <- function(product_code, count = 100, before = NA, after = NA, child_order_state){
+get_parent_orders <- function(product_code, count = 100, before = 0, after = 0, child_order_state){
   request_private_get(
     product_code = product_code,
     count = count,

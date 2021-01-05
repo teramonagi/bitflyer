@@ -9,6 +9,7 @@ get_from_env_or_global_env <- function(x)
   }
 }
 
+#' @noRd
 calling_function_name <- function(level=-2)
 {
   # e.g. bitflyer::get_markets (language)
@@ -21,6 +22,7 @@ calling_function_name <- function(level=-2)
   stringr::str_replace_all(func_name, "_", "")
 }
 
+#' @noRd
 build_path <- function(version, method, calling_function, region, query)
 {
   if(length(query) >= 1 & method == "GET"){
@@ -31,12 +33,14 @@ build_path <- function(version, method, calling_function, region, query)
   paste0("/", version, "/", calling_function, region, query)
 }
 
+#' @noRd
 build_url <- function(version, method, calling_function, region, query)
 {
   path <- build_path(version, method, calling_function, region, query)
   paste0(BITFLYER_API_URL, path)
 }
 
+#' @noRd
 check_region <- function(region) {
   region <- stringr::str_to_lower(region)
   japan <- c("", "jpn", "jp")
@@ -52,6 +56,16 @@ check_region <- function(region) {
   }
 }
 
+#' @noRd
+stop_for_order_status <- function(status){
+  ORDER_STATUSES <- c("COMPLETED", "CANCELED", "EXPIRED", "ACTIVE", "REJECTED")
+  if(!is.null(status) && !(status %in% ORDER_STATUSES)){
+    stop(sprintf("child_order_state must be one of %s", paste(ORDER_STATUSES, collapse = ", ")))
+  }
+}
+
+
+#' @noRd
 request <- function(method, url, ..., query = NULL, body = NULL)
 {
   response <- if(method == "GET"){

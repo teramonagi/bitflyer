@@ -129,3 +129,4 @@ get_health <- func_product_code
 get_chats <- function(from_date){
   request_public_get(from_date = from_date)
 }
+

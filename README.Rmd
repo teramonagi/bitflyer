@@ -28,6 +28,22 @@ install.packages("bitflyer")
 devtools::install_github("teramonagi/bitflyer")
 ```
 
+## Preparation of API keys
+bitFlyer Private APIs require authentication using an API Key and API Secret. 
+They can be obtained by generating them on the [developer's page](https://lightning.bitflyer.com/developer).
+
+You must set these keys in `.Renviron`
+```
+❯ cat ~/.Renviron 
+BITFLYER_LIGHTNING_API_KEY=<your-api-key>
+BITFLYER_LIGHTNING_API_SECRET=<your-api-secret>
+```
+or as global variables in R
+```
+> BITFLYER_LIGHTNING_API_KEY <- "your-api-key"
+> BITFLYER_LIGHTNING_API_SECRET <- "your-api-secret"
+```
+
 ## Example
 
 ### HTTP API
@@ -53,7 +69,7 @@ get_health()
 
 ```{r private_api}
 # Get a list of which HTTP Private APIs can be used with the specified API key
-get_permissions()
+fromJSON(get_permissions())
 
 # Get Margin Status
 get_collateral()
@@ -66,21 +82,24 @@ x <- send_child_order(
   price = 300*10^4, 
   size = 0.001
 )
+x
+child_order_acceptance_id <- fromJSON(x)$child_order_acceptance_id
 
 # List Orders
-get_child_orders(product_code = "BTC_JPY")
+fromJSON(get_child_orders(product_code = "BTC_JPY", child_order_acceptance_id=child_order_acceptance_id))
+# You can also get all active orders
+# fromJSON(get_child_orders(product_code = "BTC_JPY", child_order_state="ACTIVE"))
 
-# Cancel Order
-id <- fromJSON(x)$child_order_acceptance_id
-print(id)
-cancel_child_order(product_code = "BTC_JPY", child_order_id = NULL, child_order_acceptance_id = id)
+# Cancel the order
+cancel_child_order(product_code = "BTC_JPY", child_order_acceptance_id = child_order_acceptance_id)
+# No active orders
+fromJSON(get_child_orders(product_code = "BTC_JPY", child_order_state="ACTIVE"))
 
 # Get Trading Commission
 get_trading_commission(product_code = "BTC_JPY")
 
 # ... etc
 ```
-
 
 ### Realtime API
 ... under development ...
