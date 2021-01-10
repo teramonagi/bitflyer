@@ -51,11 +51,16 @@ func_product_code_private_get <- function(product_code) {
 }
 
 #' @noRd
-func_count_before_after_private_get <- function(count = 100, before = NA, after = NA){
+func_count_before_after_private_get <- function(count = 100, before = 0, after = 0){
   request_private_get(count = count, before = before, after = after)
 }
 
+
 # Exported functions (APIs)
+
+################################
+# API
+################################
 
 #' Get API Key Permissions
 #'
@@ -63,6 +68,10 @@ func_count_before_after_private_get <- function(count = 100, before = NA, after 
 #'
 #' @export
 get_permissions <- func_no_argument_private_get
+
+################################
+# Assets
+################################
 
 #' Get Account Asset Balance
 #'
@@ -84,62 +93,9 @@ get_collateral <- func_no_argument_private_get
 #' @export
 get_collateral_accounts <- func_no_argument_private_get
 
-#' Get Bitcoin/Ethereum Deposit Addresses
-#'
-#' Get Bitcoin/Ethereum Deposit Addresses
-#'
-#' @export
-get_addresses <- func_no_argument_private_get
-
-#' Get Bitcoin/Ether Deposit History
-#'
-#' Get Bitcoin/Ether Deposit History
-#'
-#' @inheritParams  count_before_after
-#' @export
-get_coin_ins <- func_count_before_after_private_get
-
-#' Get Bitcoin/Ether Transaction History
-#'
-#' Get Bitcoin/Ether Transaction History
-#'
-#' @inheritParams  count_before_after
-#' @export
-get_coin_outs <- func_count_before_after_private_get
-
-#' Get Summary of Bank Accounts
-#'
-#' Returns a summary of bank accounts registered to your account.
-#'
-#' @export
-get_bank_accounts <- func_no_argument_private_get
-
-#' Get Cash Deposits
-#'
-#' Get Cash Deposits
-#' @inheritParams  count_before_after
-#' @export
-get_deposits <- func_count_before_after_private_get
-
-#' Withdrawing Funds
-#'
-#' Withdrawing Funds
-#' @param currency_code Currently only compatible with "JPY" for Japanese accounts,
-#'   "USD" for U.S. accounts, and "EUR" for European accounts.
-#' @param bank_account_id ID of the bank account.
-#' @param amount This is the amount that you are canceling.
-#' @export
-withdraw <- function(currency_code, bank_account_id, amount) {
-  request_private_post(currency_code = currency_code, bank_account_id = bank_account_id, amount = amount)
-}
-
-#' Get Deposit Cancellation History
-#'
-#' Get Deposit Cancellation History
-#'
-#' @inheritParams  count_before_after
-#' @export
-get_withdrawals <- func_count_before_after_private_get
+################################
+# Trading
+################################
 
 #' Send a New Order
 #'
@@ -259,7 +215,7 @@ send_parent_order <- function(order_method, minute_to_expire, time_in_force, par
 #' @details
 #' When \code{parent_order_acceptance_id} is specified, the corresponding order will be cancelled.
 #' @export
-cancel_parent_order <- make_request_private_post
+cancel_parent_order <- request_private_post
 
 #' Cancel All Orders
 #'
@@ -343,7 +299,7 @@ get_parent_order <- function(parent_order_id, parent_order_acceptance_id){
 #' When \code{child_order_id} is specified, a list of stipulations related to the order will be displayed.
 #' When \code{child_order_acceptance_id} is specified, a list of stipulations related to the corresponding order will be displayed.
 #' @export
-get_executions <- function(product_code, count = 100, before = NA, after = NA, child_order_id, child_order_acceptance_id){
+get_executions <- function(product_code, count = 100, before = 0, after = 0, child_order_id = NULL, child_order_acceptance_id = NULL){
   request_private_get(
     product_code = product_code,
     count = count,
@@ -360,8 +316,8 @@ get_executions <- function(product_code, count = 100, before = NA, after = NA, c
 #'
 #' @param product_code Currently supports only "FX_BTC_JPY".
 #' @export
-get_positions <- function(product_code="FX_BTC_JPY"){
-  request_private_get(product_code = product_code)
+get_positions <- function(){
+  request_private_get(product_code = "FX_BTC_JPY")
 }
 
 #' Get Margin Change History
@@ -379,3 +335,19 @@ get_collateral_history <- func_count_before_after_private_get
 #' @inheritParams product_code
 #' @export
 get_trading_commission <- func_product_code_private_get
+
+
+
+# Not implemented yet.
+################################
+# Deposits and Withdrawals APIs
+################################
+# https://lightning.bitflyer.com/docs?lang=en#get-crypto-assets-deposit-addresses
+# get_addresses
+# get_coin_ins
+# get_coin_outs
+# get_bank_accounts
+# get_deposits
+# withdraw
+# get_withdrawals
+

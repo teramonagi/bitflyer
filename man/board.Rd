@@ -2,12 +2,9 @@
 % Please edit documentation in R/public.R
 \name{board}
 \alias{board}
-\alias{get_board}
 \title{Order Book}
 \usage{
 board(product_code = "BTC_JPY")
-
-get_board(product_code = "BTC_JPY")
 }
 \arguments{
 \item{product_code}{A product_code or alias, as obtained from the Market List.
@@ -21,6 +18,6 @@ Get order book
 \examples{
 \dontrun{
   board()
-  get_board(product_code = "BTC_USD")
+  board(product_code = "BTC_USD")
 }
 }

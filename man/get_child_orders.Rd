@@ -7,12 +7,12 @@
 get_child_orders(
   product_code,
   count = 100,
-  before = NA,
-  after = NA,
-  child_order_state,
-  child_order_id,
-  child_order_acceptance_id,
-  parent_order_id
+  before = 0,
+  after = 0,
+  child_order_state = NULL,
+  child_order_id = NULL,
+  child_order_acceptance_id = NULL,
+  parent_order_id = NULL
 )
 }
 \arguments{

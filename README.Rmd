@@ -59,10 +59,17 @@ x <- board(product_code = "BTC_JPY")
 x <- fromJSON(x)
 str(x)
 
+# Ticker 
+ticker(product_code = "BTC_JPY")
+
+# Execution History
+head(fromJSON(executions()))
+
+# Get orderbook status
+get_board_state()
+
 # Get the current status of the exchange.
 get_health()
-
-# ... etc
 ```
 
 - [HTTP Private API](https://lightning.bitflyer.com/docs/api#http-private-api)
@@ -98,7 +105,17 @@ fromJSON(get_child_orders(product_code = "BTC_JPY", child_order_state="ACTIVE"))
 # Get Trading Commission
 get_trading_commission(product_code = "BTC_JPY")
 
-# ... etc
+# Get balance
+fromJSON(get_balance())
+
+get_executions(product_code = "BTC_JPY")
+
+
+
+fromJSON(get_positions(product_code = "FX_BTC_JPY"))
+fromJSON(get_collateral_history())
+get_trading_commission(product_code = "BTC_JPY")
+
 ```
 
 ### Realtime API

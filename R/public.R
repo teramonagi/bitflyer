@@ -11,6 +11,12 @@ request_public_get <- function(..., region = "")
   request("GET", url, query = query)
 }
 
+# hoge <- func_product_code
+# is equqal to the following code:
+# hoge <- function(product_code = "BTC_JPY"){
+#     request_public_get(product_code = product_code)
+# }
+#' @inheritParams region
 func_product_code <- function(product_code = "BTC_JPY"){
   request_public_get(product_code = product_code)
 }
@@ -27,48 +33,35 @@ func_region <- function(region = "") {
 #' @examples
 #' \dontrun{
 #'   markets()
-#'   get_markets(region = "us")
+#'   markets(region = "us")
 #' }
 #' @export
 markets <- func_region
-
-#' @rdname markets
-#' @export
-get_markets <- func_region
 
 #' Order Book
 #'
 #' Get order book
 #'
-#' @rdname board
 #' @inheritParams product_code
 #' @examples
 #' \dontrun{
 #'   board()
-#'   get_board(product_code = "BTC_USD")
+#'   board(product_code = "BTC_USD")
 #' }
 #' @export
 board <- func_product_code
-
-#' @rdname board
-#' @export
-get_board <- func_product_code
 
 #' Ticker
 #'
 #' Get ticker
 #'
 #' @inheritParams product_code
+#' @examples
 #' \dontrun{
 #'   ticker(product_code = "BTC_JPY")
-#'   get_ticker(product_code = "BTC_JPY")
 #' }
 #' @export
 ticker <- func_product_code
-
-#' @rdname ticker
-#' @export
-get_ticker <- func_product_code
 
 #' Execution History
 #'
@@ -76,15 +69,13 @@ get_ticker <- func_product_code
 #'
 #' @inheritParams  product_code
 #' @inheritParams  count_before_after
-#' @note
-#' API endpoint \code{/v1/getexecutions} is not implemented because there is the same name endpoint in private API
 #' @examples
 #' \dontrun{
 #'   executions()
 #'   executions(product_code="BCH_BTC", count=3, before="303218244")
 #' }
 #' @export
-executions <- function(product_code = "BTC_JPY", count = 100, before = NA, after = NA){
+executions <- function(product_code = "BTC_JPY", count = 100, before = 0, after = 0){
   request_public_get(
     product_code = product_code,
     count = count,
@@ -92,6 +83,28 @@ executions <- function(product_code = "BTC_JPY", count = 100, before = NA, after
     after = after
   )
 }
+
+#' Orderbook status
+#'
+#' Get orderbook status
+#'
+#' @inheritParams product_code
+#' @examples
+#' \dontrun{
+#'   get_board_state(product_code = "BTC_JPY")
+#' }
+#'
+#' @return status: one of the following levels will be displayed
+#'   \itemize{
+#'     \item NORMAL: The exchange is operating.
+#'     \item BUSY: The exchange is experiencing high traffic.
+#'     \item VERY BUSY: The exchange is experiencing very heavy traffic.
+#'     \item SUPER BUSY: The exchange is experiencing extremely heavy traffic. There is a possibility that orders will fail or be processed after a delay.
+#'     \item STOP: The exchange has been stopped. Orders will not be accepted.
+#'  }
+#'
+#' @export
+get_board_state <- func_product_code
 
 #' Exchange status
 #'
@@ -110,7 +123,7 @@ executions <- function(product_code = "BTC_JPY", count = 100, before = NA, after
 #'   }
 #' @examples
 #' \dontrun{
-#' get_health()
+#'   get_health()
 #' }
 #' @export
 get_health <- func_product_code

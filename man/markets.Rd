@@ -2,12 +2,9 @@
 % Please edit documentation in R/public.R
 \name{markets}
 \alias{markets}
-\alias{get_markets}
 \title{Market List}
 \usage{
 markets(region = "")
-
-get_markets(region = "")
 }
 \arguments{
 \item{region}{Default value ("") is Japan.
@@ -23,6 +20,6 @@ Get the list of market
 \examples{
 \dontrun{
   markets()
-  get_markets(region = "us")
+  markets(region = "us")
 }
 }

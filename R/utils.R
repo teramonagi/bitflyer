@@ -77,37 +77,3 @@ request <- function(method, url, ..., query = NULL, body = NULL)
   httr::stop_for_status(response, task = content)
   content
 }
-
-if(FALSE){
-  get_balance()
-  #send_child_order(product_code="BTC_JPY", child_order_type="LIMIT", side="BUY", price=699000, size=0.001)
-  get_collateral()
-  get_child_orders(product_code="BTC_USD")
-  get_child_orders(product_code="BTC_JPY")
-  get_collateral_accounts()
-  get_ticker()
-  get_ticker(product_code="BTC_USD")
-  # Private get
-  get_trading_commission(product_code="BTC_JPY")
-  get_trading_commission(product_code="ETH_BTC")
-  # Private
-  get_permissions()
-  get_balance()
-  get_collateral()
-  get_collateral_accounts()
-  get_addresses()
-  get_coinins()
-  get_coinouts()
-  get_bank_accounts()
-  get_deposits()
-  withdraw()
-  getwithdrawals()
-  #Public
-  get_health()
-  get_health(product_code="BTC_JPY")
-  get_health(product_code="BCH_BTC")
-  get_chats()
-}
-
-make_request_private_get <- function(){}
-make_request_private_post <- function(){}

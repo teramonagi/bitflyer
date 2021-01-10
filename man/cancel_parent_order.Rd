@@ -4,7 +4,7 @@
 \alias{cancel_parent_order}
 \title{Cancel parent order}
 \usage{
-cancel_parent_order()
+cancel_parent_order(..., region = "")
 }
 \description{
 Parent orders can be canceled in the same manner as regular orders.

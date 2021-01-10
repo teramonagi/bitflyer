@@ -7,8 +7,8 @@
 get_parent_orders(
   product_code,
   count = 100,
-  before = NA,
-  after = NA,
+  before = 0,
+  after = 0,
   child_order_state
 )
 }
