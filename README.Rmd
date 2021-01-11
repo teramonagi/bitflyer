@@ -14,7 +14,9 @@ knitr::opts_chunk$set(
 
 # bitflyer 
 
-[![Build Status](https://travis-ci.org/teramonagi/bitflyer.svg?branch=master)](https://travis-ci.org/teramonagi/bitflyer)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/teramonagi/bitflyer/workflows/R-CMD-check/badge.svg)](https://github.com/teramonagi/bitflyer/actions)
+<!-- badges: end -->
 
 R wrapper for [bitFlyer's API](https://lightning.bitflyer.com/docs/api?lang=en)
 
@@ -111,9 +113,6 @@ cancel_child_order(product_code = "BTC_JPY", child_order_acceptance_id = child_o
 # No active orders (Check)
 fromJSON(get_child_orders(product_code = "BTC_JPY", child_order_state="ACTIVE"))
 
-# Get Trading Commission
-get_trading_commission(product_code = "BTC_JPY")
-
 # Get balance
 fromJSON(get_balance())
 
@@ -123,7 +122,10 @@ get_parent_orders(product_code = "BTC_JPY")
 # List Executions
 fromJSON(get_executions(product_code = "BTC_JPY"))
 
-# Get Open Interest Summary 
+# List Balance History
+fromJSON(get_balance_history())
+
+# Get Open Interest Summary
 get_positions()
 
 # Get Margin Change History
