@@ -4,7 +4,7 @@
 \alias{get_positions}
 \title{Get Open Interest Summary}
 \usage{
-get_positions(product_code = "FX_BTC_JPY")
+get_positions()
 }
 \arguments{
 \item{product_code}{Currently supports only "FX_BTC_JPY".}

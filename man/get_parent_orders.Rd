@@ -4,8 +4,13 @@
 \alias{get_parent_orders}
 \title{List Parent Orders}
 \usage{
-get_parent_orders(product_code, count = 100, before = NA, after = NA,
-  child_order_state)
+get_parent_orders(
+  product_code,
+  count = 100,
+  before = 0,
+  after = 0,
+  parent_order_state = NULL
+)
 }
 \arguments{
 \item{product_code}{A product_code or alias, as obtained from the Market List.
@@ -19,7 +24,7 @@ and only "BTC_EUR" is available for European accounts.}
 
 \item{after}{Obtains data having an id higher than the value specified for this parameter.}
 
-\item{child_order_state}{When specified, return only orders that match the specified value.
+\item{parent_order_state}{When specified, return only orders that match the specified value.
 You must specify one of the following:
 \itemize{
   \item "ACTIVE": Return open orders

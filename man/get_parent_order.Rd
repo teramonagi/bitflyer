@@ -4,7 +4,7 @@
 \alias{get_parent_order}
 \title{Get Parent Order Details}
 \usage{
-get_parent_order(parent_order_id, parent_order_acceptance_id)
+get_parent_order(parent_order_id = NULL, parent_order_acceptance_id = NULL)
 }
 \arguments{
 \item{parent_order_id}{The ID of the parent order in question.}
@@ -13,7 +13,5 @@ get_parent_order(parent_order_id, parent_order_acceptance_id)
 }
 \description{
 Get Parent Order Details
-}
-\details{
-If \code{parent_order_acceptance_id} is specified, it returns the details of the parent order in question.
+Please specify either parent_order_id or parent_order_acceptance_id.
 }

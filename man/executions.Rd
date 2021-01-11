@@ -4,8 +4,7 @@
 \alias{executions}
 \title{Execution History}
 \usage{
-executions(product_code = "BTC_JPY", count = 100, before = NA,
-  after = NA)
+executions(product_code = "BTC_JPY", count = 100, before = 0, after = 0)
 }
 \arguments{
 \item{product_code}{A product_code or alias, as obtained from the Market List.
@@ -21,9 +20,6 @@ and only "BTC_EUR" is available for European accounts.}
 }
 \description{
 Get Execution History
-}
-\note{
-API endpoint \code{/v1/getexecutions} is not implemented because there is the same name endpoint in private API
 }
 \examples{
 \dontrun{

@@ -8,3 +8,13 @@
 \description{
 Make it easier to use bitFlyer's REST API (\url{https://lightning.bitflyer.com/docs?lang=en})
 }
+\author{
+\strong{Maintainer}: Nagi Teramo \email{teramonagi@gmail.com}
+
+Authors:
+\itemize{
+  \item Shinichi Takayanagi \email{shinichi.takayanagi@gmail.com}
+}
+
+}
+\keyword{internal}

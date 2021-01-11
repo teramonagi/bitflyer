@@ -4,8 +4,15 @@
 \alias{send_child_order}
 \title{Send a New Order}
 \usage{
-send_child_order(product_code, child_order_type, side, price, size,
-  minute_to_expire = 43200, time_in_force = "GTC")
+send_child_order(
+  product_code,
+  child_order_type,
+  side,
+  price,
+  size,
+  minute_to_expire = 43200,
+  time_in_force = "GTC"
+)
 }
 \arguments{
 \item{product_code}{A product_code or alias, as obtained from the Market List.

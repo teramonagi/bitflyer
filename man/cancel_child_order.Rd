@@ -4,7 +4,11 @@
 \alias{cancel_child_order}
 \title{Cancel Order}
 \usage{
-cancel_child_order(product_code, child_order_id, child_order_acceptance_id)
+cancel_child_order(
+  product_code,
+  child_order_id = NULL,
+  child_order_acceptance_id = NULL
+)
 }
 \arguments{
 \item{product_code}{A product_code or alias, as obtained from the Market List.

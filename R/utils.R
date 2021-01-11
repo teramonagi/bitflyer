@@ -9,6 +9,7 @@ get_from_env_or_global_env <- function(x)
   }
 }
 
+#' @noRd
 calling_function_name <- function(level=-2)
 {
   # e.g. bitflyer::get_markets (language)
@@ -21,6 +22,7 @@ calling_function_name <- function(level=-2)
   stringr::str_replace_all(func_name, "_", "")
 }
 
+#' @noRd
 build_path <- function(version, method, calling_function, region, query)
 {
   if(length(query) >= 1 & method == "GET"){
@@ -31,12 +33,14 @@ build_path <- function(version, method, calling_function, region, query)
   paste0("/", version, "/", calling_function, region, query)
 }
 
+#' @noRd
 build_url <- function(version, method, calling_function, region, query)
 {
   path <- build_path(version, method, calling_function, region, query)
   paste0(BITFLYER_API_URL, path)
 }
 
+#' @noRd
 check_region <- function(region) {
   region <- stringr::str_to_lower(region)
   japan <- c("", "jpn", "jp")
@@ -52,6 +56,41 @@ check_region <- function(region) {
   }
 }
 
+#' @noRd
+stop_for <- function(name, x, xs, to_upper = TRUE){
+  if(is.null(x)){
+    return(NULL)
+  }
+  if(to_upper){
+    x <- stringr::str_to_upper(x)
+  }
+  if(!(x %in% xs)){
+    message <- sprintf("%s must be one of %s", name, paste(xs, collapse = ", "))
+    stop(message)
+  }
+
+}
+#' @noRd
+stop_for_order_state <- function(name, order_state){
+  ORDER_STATES <- c("COMPLETED", "CANCELED", "EXPIRED", "ACTIVE", "REJECTED")
+  stop_for(name, order_state, ORDER_STATES, TRUE)
+}
+stop_for_child_order_state  <- function(order_state){stop_for_order_state("child_order_state", order_state)}
+stop_for_parent_order_state <- function(order_state){stop_for_order_state("parent_order_state", order_state)}
+
+#' @noRd
+stop_for_order_method <- function(order_method){
+  ORDER_METHODS <- c("COMPLETED", "CANCELED", "EXPIRED", "ACTIVE", "REJECTED")
+  stop_for("order_method", order_method, ORDER_METHODS, TRUE)
+}
+
+#' @noRd
+stop_for_time_in_force <- function(time_in_force){
+  TIME_IN_FORCES <- c("GTC", "IOC", "FOK")
+  stop_for("time_in_force", time_in_force, TIME_IN_FORCES, TRUE)
+}
+
+#' @noRd
 request <- function(method, url, ..., query = NULL, body = NULL)
 {
   response <- if(method == "GET"){
@@ -63,37 +102,3 @@ request <- function(method, url, ..., query = NULL, body = NULL)
   httr::stop_for_status(response, task = content)
   content
 }
-
-if(FALSE){
-  get_balance()
-  #send_child_order(product_code="BTC_JPY", child_order_type="LIMIT", side="BUY", price=699000, size=0.001)
-  get_collateral()
-  get_child_orders(product_code="BTC_USD")
-  get_child_orders(product_code="BTC_JPY")
-  get_collateral_accounts()
-  get_ticker()
-  get_ticker(product_code="BTC_USD")
-  # Private get
-  get_trading_commission(product_code="BTC_JPY")
-  get_trading_commission(product_code="ETH_BTC")
-  # Private
-  get_permissions()
-  get_balance()
-  get_collateral()
-  get_collateral_accounts()
-  get_addresses()
-  get_coinins()
-  get_coinouts()
-  get_bank_accounts()
-  get_deposits()
-  withdraw()
-  getwithdrawals()
-  #Public
-  get_health()
-  get_health(product_code="BTC_JPY")
-  get_health(product_code="BCH_BTC")
-  get_chats()
-}
-
-make_request_private_get <- function(){}
-make_request_private_post <- function(){}
