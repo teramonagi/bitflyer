@@ -57,13 +57,38 @@ check_region <- function(region) {
 }
 
 #' @noRd
-stop_for_order_status <- function(status){
-  ORDER_STATUSES <- c("COMPLETED", "CANCELED", "EXPIRED", "ACTIVE", "REJECTED")
-  if(!is.null(status) && !(status %in% ORDER_STATUSES)){
-    stop(sprintf("child_order_state must be one of %s", paste(ORDER_STATUSES, collapse = ", ")))
+stop_for <- function(name, x, xs, to_upper = TRUE){
+  if(is.null(x)){
+    return(NULL)
   }
+  if(to_upper){
+    x <- stringr::str_to_upper(x)
+  }
+  if(!(x %in% xs)){
+    message <- sprintf("%s must be one of %s", name, paste(xs, collapse = ", "))
+    stop(message)
+  }
+
+}
+#' @noRd
+stop_for_order_state <- function(name, order_state){
+  ORDER_STATES <- c("COMPLETED", "CANCELED", "EXPIRED", "ACTIVE", "REJECTED")
+  stop_for(name, order_state, ORDER_STATES, TRUE)
+}
+stop_for_child_order_state  <- function(order_state){stop_for_order_state("child_order_state", order_state)}
+stop_for_parent_order_state <- function(order_state){stop_for_order_state("parent_order_state", order_state)}
+
+#' @noRd
+stop_for_order_method <- function(order_method){
+  ORDER_METHODS <- c("COMPLETED", "CANCELED", "EXPIRED", "ACTIVE", "REJECTED")
+  stop_for("order_method", order_method, ORDER_METHODS, TRUE)
 }
 
+#' @noRd
+stop_for_time_in_force <- function(time_in_force){
+  TIME_IN_FORCES <- c("GTC", "IOC", "FOK")
+  stop_for("time_in_force", time_in_force, TIME_IN_FORCES, TRUE)
+}
 
 #' @noRd
 request <- function(method, url, ..., query = NULL, body = NULL)

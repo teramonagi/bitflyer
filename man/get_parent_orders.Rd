@@ -9,7 +9,7 @@ get_parent_orders(
   count = 100,
   before = 0,
   after = 0,
-  child_order_state
+  parent_order_state = NULL
 )
 }
 \arguments{
@@ -24,7 +24,7 @@ and only "BTC_EUR" is available for European accounts.}
 
 \item{after}{Obtains data having an id higher than the value specified for this parameter.}
 
-\item{child_order_state}{When specified, return only orders that match the specified value.
+\item{parent_order_state}{When specified, return only orders that match the specified value.
 You must specify one of the following:
 \itemize{
   \item "ACTIVE": Return open orders

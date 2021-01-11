@@ -45,6 +45,21 @@ NULL
 #'   }
 NULL
 
+#' @title parent_order_state
+#' @description parent_order_state
+#' @name parent_order_state
+#' @keywords internal
+#' @param parent_order_state When specified, return only orders that match the specified value.
+#'   You must specify one of the following:
+#'   \itemize{
+#'     \item "ACTIVE": Return open orders
+#'     \item "COMPLETED": Return fully completed orders
+#'     \item "CANCELED": Return orders that have been cancelled by the customer
+#'     \item "EXPIRED": Return order that have been cancelled due to expiry
+#'     \item "REJECTED": Return failed orders
+#'   }
+NULL
+
 
 #' @title child_order_id
 #' @description child_order_id
