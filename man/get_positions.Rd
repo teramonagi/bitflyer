@@ -6,9 +6,7 @@
 \usage{
 get_positions()
 }
-\arguments{
-\item{product_code}{Currently supports only "FX_BTC_JPY".}
-}
 \description{
-Get Open Interest Summary
+Get Open Interest Summary.
+Currently supports only "FX_BTC_JPY".
 }

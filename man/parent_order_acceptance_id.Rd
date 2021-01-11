@@ -4,7 +4,7 @@
 \alias{parent_order_acceptance_id}
 \title{parent_order_acceptance_id}
 \arguments{
-\item{parent_order_acceptance_id}{Expects an ID from \code{\link{send_parent_order}}}
+\item{parent_order_acceptance_id}{Expects an ID from \code{send_parent_order}}
 }
 \description{
 parent_order_acceptance_id

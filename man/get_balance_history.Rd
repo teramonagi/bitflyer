@@ -7,13 +7,13 @@
 get_balance_history(currency_code = "JPY", count = 100, before = 0, after = 0)
 }
 \arguments{
+\item{currency_code}{Specify a currency code. If omitted, the value is set to JPY.}
+
 \item{count}{Specifies the number of results. If this is omitted, the value will be 100.}
 
 \item{before}{Obtains data having an id lower than the value specified for this parameter.}
 
 \item{after}{Obtains data having an id higher than the value specified for this parameter.}
-
-\item{country}{Specify a currency code. If omitted, the value is set to JPY.}
 }
 \description{
 List Balance History
