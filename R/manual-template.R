@@ -8,6 +8,7 @@
 #'   and only "BTC_EUR" is available for European accounts.
 NULL
 
+
 #' @title region
 #' @description region
 #' @name region
@@ -19,6 +20,7 @@ NULL
 #'     \item Euro: "eu"
 #'   }
 NULL
+
 
 #' @title count, before, after
 #' @description count_before_after
@@ -45,6 +47,7 @@ NULL
 #'   }
 NULL
 
+
 #' @title parent_order_state
 #' @description parent_order_state
 #' @name parent_order_state
@@ -68,12 +71,14 @@ NULL
 #' @param child_order_id  ID for the child order.
 NULL
 
+
 #' @title child_order_acceptance_id
 #' @description child_order_acceptance_id
 #' @name child_order_acceptance_id
 #' @keywords internal
 #' @param child_order_acceptance_id Expects an ID from \code{\link{send_child_order}}
 NULL
+
 
 #' @title parent_order_id
 #' @description child_order_acceptance_id
@@ -82,9 +87,10 @@ NULL
 #' @param parent_order_id The ID of the parent order in question.
 NULL
 
+
 #' @title parent_order_acceptance_id
 #' @description parent_order_acceptance_id
 #' @name parent_order_acceptance_id
 #' @keywords internal
-#' @param parent_order_acceptance_id Expects an ID from \code{\link{send_parent_order}}
+#' @param parent_order_acceptance_id Expects an ID from \code{send_parent_order}
 NULL

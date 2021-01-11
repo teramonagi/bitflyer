@@ -9,7 +9,7 @@ get_parent_order(parent_order_id = NULL, parent_order_acceptance_id = NULL)
 \arguments{
 \item{parent_order_id}{The ID of the parent order in question.}
 
-\item{parent_order_acceptance_id}{Expects an ID from \code{\link{send_parent_order}}}
+\item{parent_order_acceptance_id}{Expects an ID from \code{send_parent_order}}
 }
 \description{
 Get Parent Order Details

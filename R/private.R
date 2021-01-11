@@ -157,7 +157,6 @@ cancel_all_child_orders <- function(product_code) {
 #' @inheritParams parent_order_id
 #' @details
 #' If \code{parent_order_id} is specified, a list of all orders associated with the parent order is obtained.
-#' @importFrom glue glue
 #' @export
 get_child_orders <- function(product_code, count = 100, before = 0, after = 0, child_order_state = NULL, child_order_id = NULL, child_order_acceptance_id = NULL, parent_order_id = NULL){
   stop_for_child_order_state(child_order_state)
@@ -235,7 +234,7 @@ get_executions <- function(product_code, count = 100, before = 0, after = 0, chi
 #'
 #' List Balance History
 #'
-#' @param country Specify a currency code. If omitted, the value is set to JPY.
+#' @param currency_code Specify a currency code. If omitted, the value is set to JPY.
 #' @inheritParams count_before_after
 #' @export
 get_balance_history <- function(currency_code = "JPY", count = 100, before = 0, after = 0){
@@ -250,9 +249,9 @@ get_balance_history <- function(currency_code = "JPY", count = 100, before = 0, 
 
 #' Get Open Interest Summary
 #'
-#' Get Open Interest Summary
+#' Get Open Interest Summary.
+#' Currently supports only "FX_BTC_JPY".
 #'
-#' @param product_code Currently supports only "FX_BTC_JPY".
 #' @export
 get_positions <- function(){
   request_private_get(product_code = "FX_BTC_JPY")
