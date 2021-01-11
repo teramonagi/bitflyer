@@ -24,9 +24,10 @@ R wrapper for [bitFlyer's API](https://lightning.bitflyer.com/docs/api?lang=en)
 ## Installation
 
 ```{r gh-installation, eval = FALSE}
-install.packages("bitflyer")
+# Not yet on CRAN
+# install.packages("bitflyer")
 
-# Or the development version from GitHub:
+# Install the development version from GitHub:
 # install.packages("devtools")
 devtools::install_github("teramonagi/bitflyer")
 ```

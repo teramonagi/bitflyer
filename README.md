@@ -16,9 +16,10 @@ API](https://lightning.bitflyer.com/docs/api?lang=en)
 ## Installation
 
 ``` r
-install.packages("bitflyer")
+# Not yet on CRAN
+# install.packages("bitflyer")
 
-# Or the development version from GitHub:
+# Install the development version from GitHub:
 # install.packages("devtools")
 devtools::install_github("teramonagi/bitflyer")
 ```
@@ -71,34 +72,34 @@ x <- board(product_code = "BTC_JPY")
 x <- fromJSON(x)
 str(x)
 #> List of 3
-#>  $ mid_price: num 3764983
-#>  $ bids     :'data.frame':   2748 obs. of  2 variables:
-#>   ..$ price: num [1:2748] 3764189 3764172 3761436 3761435 3761383 ...
-#>   ..$ size : num [1:2748] 0.17 0.01 0.029 0.85 0.07 0.1 1 0.001 0.003 0.01 ...
-#>  $ asks     :'data.frame':   1936 obs. of  2 variables:
-#>   ..$ price: num [1:1936] 3765778 3767086 3767538 3767543 3767544 ...
-#>   ..$ size : num [1:1936] 0.048 0.2 0.2 0.3 0.196 0.1 0.106 0.09 0.85 0.07 ...
+#>  $ mid_price: num 3779321
+#>  $ bids     :'data.frame':   2837 obs. of  2 variables:
+#>   ..$ price: num [1:2837] 3778213 3778212 3778169 3777966 3777743 ...
+#>   ..$ size : num [1:2837] 0.05 0.85 0.088 0.106 0.05 0.175 0.098 0.15 0.05 0.096 ...
+#>  $ asks     :'data.frame':   1926 obs. of  2 variables:
+#>   ..$ price: num [1:1926] 3780430 3781496 3781499 3781500 3781590 ...
+#>   ..$ size : num [1:1926] 0.006 0.03 0.8 0.095 0.139 0.00105 0.175 0.05 0.008 0.1 ...
 
 # Ticker 
 ticker(product_code = "BTC_JPY")
-#> [1] "{\"product_code\":\"BTC_JPY\",\"state\":\"RUNNING\",\"timestamp\":\"2021-01-11T02:16:55.237\",\"tick_id\":11627610,\"best_bid\":3765524.0,\"best_ask\":3766335.0,\"best_bid_size\":0.08565571,\"best_ask_size\":0.05,\"total_bid_depth\":877.16120237,\"total_ask_depth\":829.373516,\"market_bid_size\":0.0,\"market_ask_size\":0.0,\"ltp\":3765573.0,\"volume\":167618.86291907,\"volume_by_product\":13534.99677343}"
+#> [1] "{\"product_code\":\"BTC_JPY\",\"state\":\"RUNNING\",\"timestamp\":\"2021-01-11T02:23:02.923\",\"tick_id\":11641542,\"best_bid\":3778990.0,\"best_ask\":3781496.0,\"best_bid_size\":0.195,\"best_ask_size\":0.03,\"total_bid_depth\":905.4001749,\"total_ask_depth\":838.77890196,\"market_bid_size\":0.0,\"market_ask_size\":0.0,\"ltp\":3780430.0,\"volume\":168682.06537567,\"volume_by_product\":13616.4547289}"
 
 # Execution History
 head(fromJSON(executions()))
-#>           id side   price      size               exec_date
-#> 1 2114072070  BUY 3768684 0.0030000 2021-01-11T02:16:51.007
-#> 2 2114072069 SELL 3765524 0.1543443 2021-01-11T02:16:50.283
-#> 3 2114072068  BUY 3767863 0.0100000 2021-01-11T02:16:50.223
-#> 4 2114072066 SELL 3765778 0.0500000  2021-01-11T02:16:49.76
-#> 5 2114072065  BUY 3768951 0.0000060  2021-01-11T02:16:49.48
-#> 6 2114072064  BUY 3768445 0.0600000  2021-01-11T02:16:49.48
+#>           id side   price       size               exec_date
+#> 1 2114086954  BUY 3781499 0.05000000  2021-01-11T02:23:00.66
+#> 2 2114086953  BUY 3780000 0.05000000  2021-01-11T02:23:00.66
+#> 3 2114086952 SELL 3780430 0.95519531 2021-01-11T02:22:59.647
+#> 4 2114086951 SELL 3780430 0.03480469 2021-01-11T02:22:59.617
+#> 5 2114086950  BUY 3780000 0.01000000 2021-01-11T02:22:59.297
+#> 6 2114086948 SELL 3778336 0.01390625 2021-01-11T02:22:58.263
 #>   buy_child_order_acceptance_id sell_child_order_acceptance_id
-#> 1     JRF20210111-021650-157326      JRF20210111-021650-140427
-#> 2     JRF20210111-021648-061703      JRF20210111-021650-006966
-#> 3     JRF20210111-021650-089406      JRF20210111-021649-072427
-#> 4     JRF20210111-021641-029164      JRF20210111-021649-070820
-#> 5     JRF20210111-021649-115263      JRF20210111-021649-055719
-#> 6     JRF20210111-021649-115263      JRF20210111-021649-057857
+#> 1     JRF20210111-022300-006846      JRF20210111-022258-080121
+#> 2     JRF20210111-022300-006846      JRF20210111-022300-030394
+#> 3     JRF20210111-022258-100008      JRF20210111-022259-065022
+#> 4     JRF20210111-022258-100008      JRF20210111-022259-093027
+#> 5     JRF20210111-022258-100008      JRF20210111-022258-101011
+#> 6     JRF20210111-022251-002787      JRF20210111-022258-181776
 
 # Get orderbook status
 fromJSON(get_board_state())
