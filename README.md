@@ -3,8 +3,12 @@
 
 # bitflyer
 
-[![Build
-Status](https://travis-ci.org/teramonagi/bitflyer.svg?branch=master)](https://travis-ci.org/teramonagi/bitflyer)
+<!-- badges: start -->
+
+[![R-CMD-check](https://github.com/teramonagi/bitflyer/workflows/R-CMD-check/badge.svg)](https://github.com/teramonagi/bitflyer/actions)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+<!-- badges: end -->
 
 R wrapper for [bitFlyer’s
 API](https://lightning.bitflyer.com/docs/api?lang=en)
@@ -67,34 +71,34 @@ x <- board(product_code = "BTC_JPY")
 x <- fromJSON(x)
 str(x)
 #> List of 3
-#>  $ mid_price: num 3911775
-#>  $ bids     :'data.frame':   3039 obs. of  2 variables:
-#>   ..$ price: num [1:3039] 3910551 3910456 3910452 3910258 3910109 ...
-#>   ..$ size : num [1:3039] 0.05 0.05 0.05 0.05 0.03 ...
-#>  $ asks     :'data.frame':   1907 obs. of  2 variables:
-#>   ..$ price: num [1:1907] 3913000 3913607 3913608 3913789 3913856 ...
-#>   ..$ size : num [1:1907] 0.5 0.05 0.202 0.3 0.103 ...
+#>  $ mid_price: num 3764983
+#>  $ bids     :'data.frame':   2748 obs. of  2 variables:
+#>   ..$ price: num [1:2748] 3764189 3764172 3761436 3761435 3761383 ...
+#>   ..$ size : num [1:2748] 0.17 0.01 0.029 0.85 0.07 0.1 1 0.001 0.003 0.01 ...
+#>  $ asks     :'data.frame':   1936 obs. of  2 variables:
+#>   ..$ price: num [1:1936] 3765778 3767086 3767538 3767543 3767544 ...
+#>   ..$ size : num [1:1936] 0.048 0.2 0.2 0.3 0.196 0.1 0.106 0.09 0.85 0.07 ...
 
 # Ticker 
 ticker(product_code = "BTC_JPY")
-#> [1] "{\"product_code\":\"BTC_JPY\",\"state\":\"RUNNING\",\"timestamp\":\"2021-01-11T01:36:36.717\",\"tick_id\":11540984,\"best_bid\":3910551.0,\"best_ask\":3913000.0,\"best_bid_size\":0.05,\"best_ask_size\":0.5,\"total_bid_depth\":903.5484432,\"total_ask_depth\":815.69053859,\"market_bid_size\":0.0,\"market_ask_size\":0.0,\"ltp\":3913607.0,\"volume\":163105.51955855,\"volume_by_product\":13195.32819796}"
+#> [1] "{\"product_code\":\"BTC_JPY\",\"state\":\"RUNNING\",\"timestamp\":\"2021-01-11T02:16:55.237\",\"tick_id\":11627610,\"best_bid\":3765524.0,\"best_ask\":3766335.0,\"best_bid_size\":0.08565571,\"best_ask_size\":0.05,\"total_bid_depth\":877.16120237,\"total_ask_depth\":829.373516,\"market_bid_size\":0.0,\"market_ask_size\":0.0,\"ltp\":3765573.0,\"volume\":167618.86291907,\"volume_by_product\":13534.99677343}"
 
 # Execution History
 head(fromJSON(executions()))
-#>           id side   price    size               exec_date
-#> 1 2113979837  BUY 3913607 0.01051  2021-01-11T01:36:35.83
-#> 2 2113979836 SELL 3912339 0.04805   2021-01-11T01:36:35.3
-#> 3 2113979835  BUY 3912336 0.06990 2021-01-11T01:36:34.697
-#> 4 2113979832 SELL 3910453 0.00380 2021-01-11T01:36:30.303
-#> 5 2113979831 SELL 3912336 0.15406 2021-01-11T01:36:28.957
-#> 6 2113979830 SELL 3912336 0.00694  2021-01-11T01:36:28.94
+#>           id side   price      size               exec_date
+#> 1 2114072070  BUY 3768684 0.0030000 2021-01-11T02:16:51.007
+#> 2 2114072069 SELL 3765524 0.1543443 2021-01-11T02:16:50.283
+#> 3 2114072068  BUY 3767863 0.0100000 2021-01-11T02:16:50.223
+#> 4 2114072066 SELL 3765778 0.0500000  2021-01-11T02:16:49.76
+#> 5 2114072065  BUY 3768951 0.0000060  2021-01-11T02:16:49.48
+#> 6 2114072064  BUY 3768445 0.0600000  2021-01-11T02:16:49.48
 #>   buy_child_order_acceptance_id sell_child_order_acceptance_id
-#> 1     JRF20210111-013635-002627      JRF20210111-013635-077930
-#> 2     JRF20210111-013634-091778      JRF20210111-013635-140089
-#> 3     JRF20210111-013634-021185      JRF20210111-013633-048118
-#> 4     JRF20210111-013629-077906      JRF20210111-013629-149103
-#> 5     JRF20210111-013623-059906      JRF20210111-013628-065219
-#> 6     JRF20210111-013623-059906      JRF20210111-013628-077903
+#> 1     JRF20210111-021650-157326      JRF20210111-021650-140427
+#> 2     JRF20210111-021648-061703      JRF20210111-021650-006966
+#> 3     JRF20210111-021650-089406      JRF20210111-021649-072427
+#> 4     JRF20210111-021641-029164      JRF20210111-021649-070820
+#> 5     JRF20210111-021649-115263      JRF20210111-021649-055719
+#> 6     JRF20210111-021649-115263      JRF20210111-021649-057857
 
 # Get orderbook status
 fromJSON(get_board_state())
@@ -145,9 +149,6 @@ cancel_child_order(product_code = "BTC_JPY", child_order_acceptance_id = child_o
 # No active orders (Check)
 fromJSON(get_child_orders(product_code = "BTC_JPY", child_order_state="ACTIVE"))
 
-# Get Trading Commission
-get_trading_commission(product_code = "BTC_JPY")
-
 # Get balance
 fromJSON(get_balance())
 
@@ -157,7 +158,10 @@ get_parent_orders(product_code = "BTC_JPY")
 # List Executions
 fromJSON(get_executions(product_code = "BTC_JPY"))
 
-# Get Open Interest Summary 
+# List Balance History
+fromJSON(get_balance_history())
+
+# Get Open Interest Summary
 get_positions()
 
 # Get Margin Change History
